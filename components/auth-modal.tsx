@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -26,6 +26,33 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [passwordStrength, setPasswordStrength] = useState(0);
   const { showAlert } = useAlert();
+
+  // Slideshow images
+  const slideImages = [
+    '/agriculture-icon.png',
+    '/infrastructure-icon.png',
+    '/defence-icon.png',
+    '/disaster-icon.png',
+    '/environment-icon.png',
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slideImages.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slideImages.length) % slideImages.length);
+  };
 
   // Load form data from localStorage on mount
   useEffect(() => {
@@ -270,82 +297,89 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
           {isLogin ? 'Sign In to MEGABOTICS' : 'Create Account with MEGABOTICS'}
         </DialogTitle>
         <div className="grid grid-cols-2 gap-0">
-          {/* Left Side - Branding & Info */}
-          <div className="bg-gradient-to-br from-blue-600 to-cyan-600 p-8 text-white flex flex-col justify-between">
-            <div>
-              <h2 className="text-3xl font-bold mb-2">MEGABOTICS</h2>
-              <p className="text-sm text-blue-100 mb-6">Make in India 🇮🇳</p>
-              
-              <div className="space-y-4">
-                {isLogin ? (
-                  <>
-                    <div className="animate-in fade-in slide-in-from-left duration-500">
-                      <h3 className="text-lg font-semibold mb-2">Welcome Back</h3>
-                      <p className="text-sm text-blue-100 leading-relaxed">
-                        Continue your innovation journey with MEGABOTICS. Access your projects, track progress, and collaborate with our community of innovators.
-                      </p>
-                    </div>
-                    <div className="space-y-3 pt-2 animate-in fade-in slide-in-from-left duration-500 delay-100">
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Access Your Projects</p>
-                          <p className="text-xs text-blue-100">Manage all your robotics projects</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Track Progress</p>
-                          <p className="text-xs text-blue-100">Monitor your development milestones</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Join Community</p>
-                          <p className="text-xs text-blue-100">Connect with innovators worldwide</p>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="animate-in fade-in slide-in-from-left duration-500">
-                      <h3 className="text-lg font-semibold mb-2">Join Us Today</h3>
-                      <p className="text-sm text-blue-100 leading-relaxed">
-                        Start your deep-tech journey with MEGABOTICS. Get exclusive access to tools, resources, and our innovation hub.
-                      </p>
-                    </div>
-                    <div className="space-y-3 pt-2 animate-in fade-in slide-in-from-left duration-500 delay-100">
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Exclusive Features</p>
-                          <p className="text-xs text-blue-100">Access premium tools and resources</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Innovation Hub</p>
-                          <p className="text-xs text-blue-100">Collaborate with industry leaders</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-lg mt-1">✓</span>
-                        <div>
-                          <p className="font-semibold text-sm">Early Access</p>
-                          <p className="text-xs text-blue-100">Get first access to new products</p>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
+          {/* Left Side - Image Slideshow with Overlay */}
+          <div className="relative bg-gray-900 p-8 text-white flex flex-col justify-between overflow-hidden group">
+            {/* Slideshow Images - Full Background */}
+            {slideImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+            ))}
+
+            {/* Navigation Buttons - Visible on Hover */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Content Overlay at Bottom */}
+            <div className="relative z-10 mt-auto space-y-4">
+              {/* Badge */}
+              <div className="inline-block">
+                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {isLogin ? 'Welcome' : 'Join Now'}
+                </span>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h2 className="text-4xl font-bold mb-3">
+                  {isLogin ? 'MEGABOTICS' : 'Innovation Hub'}
+                </h2>
+                <p className="text-sm text-gray-200 leading-relaxed max-w-xs">
+                  {isLogin
+                    ? 'Experience the future of robotics and autonomous systems with cutting-edge technology.'
+                    : 'Join our community of innovators and pioneers in deep-tech robotics.'}
+                </p>
+              </div>
+
+              {/* Features */}
+              <div className="flex gap-4 text-xs text-gray-300 pt-2">
+                <div className="flex items-center gap-1">
+                  <span>✓</span>
+                  <span>{isLogin ? 'Access Projects' : 'Exclusive Access'}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span>✓</span>
+                  <span>{isLogin ? 'Track Progress' : 'Early Features'}</span>
+                </div>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="flex gap-2 pt-4">
+                {slideImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-1 rounded-full transition-all ${
+                      index === currentSlide ? 'bg-white w-6' : 'bg-white/50 w-2'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
             </div>
-
-            <p className="text-xs text-blue-100">MEGABOTICS © 2025</p>
           </div>
 
           {/* Right Side - Form */}
