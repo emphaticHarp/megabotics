@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogClose, DialogTitle } from '@/components/ui/dialog';
 import { ForgotPasswordModal } from '@/components/forgot-password-modal';
 import { useAlert } from '@/components/alert-provider';
+import { useAuth } from '@/lib/auth-context';
 
 export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -26,6 +27,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [passwordStrength, setPasswordStrength] = useState(0);
   const { showAlert } = useAlert();
+  const { login, register } = useAuth();
 
   // Slideshow images
   const slideImages = [
@@ -179,12 +181,7 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Store session token
-      localStorage.setItem('authToken', 'mock-token-' + Date.now());
-      localStorage.setItem('userEmail', email);
+      await login(email, password);
       
       showAlert({
         type: 'success',
@@ -198,10 +195,10 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
       setRememberMe(false);
       setErrors({});
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       showAlert({
         type: 'error',
-        title: 'Sign in failed. Please try again.',
+        title: error.message || 'Sign in failed',
       });
     } finally {
       setIsLoading(false);
@@ -257,17 +254,11 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Store session token
-      localStorage.setItem('authToken', 'mock-token-' + Date.now());
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userName', name);
+      await register(name, email, password, confirmPassword);
       
       showAlert({
         type: 'success',
-        title: 'Account created! Check your email to verify.',
+        title: 'Account created successfully!',
       });
       
       // Clear form data
@@ -279,10 +270,10 @@ export function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
       setAcceptTerms(false);
       setErrors({});
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       showAlert({
         type: 'error',
-        title: 'Sign up failed. Please try again.',
+        title: error.message || 'Sign up failed. Please try again.',
       });
     } finally {
       setIsLoading(false);

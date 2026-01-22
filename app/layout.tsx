@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { PageLoader } from "@/components/page-loader";
 import { AlertProvider } from "@/components/alert-provider";
+import { CartSidebar } from "@/components/cart-sidebar";
+import { AuthProvider } from "@/lib/auth-context";
 import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
@@ -36,12 +38,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AlertProvider>
-          <PageLoader />
-          <Navbar />
-          {children}
-          <Analytics />
-        </AlertProvider>
+        <AuthProvider>
+          <AlertProvider>
+            <PageLoader />
+            <Navbar />
+            <CartSidebar />
+            {children}
+            <Analytics />
+          </AlertProvider>
+        </AuthProvider>
       </body>
     </html>
   );

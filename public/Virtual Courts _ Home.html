@@ -1,0 +1,1192 @@
+
+<!-- saved from url=(0044)https://vcourts.gov.in/virtualcourt/main.php -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<script type="text/javascript">
+
+var sessflag="";	
+var sessid="";
+var sessyear="";
+var sessdate="";
+var sessusertype="";
+var sessionuserid="";
+var form_name="";
+var form_mode="";
+var form_linkid="1";
+var tab_id="";
+var level2forbrd="";
+var servertime="";
+var serverdate="";
+var serveryear="";
+var sessionHcdc="";
+var difflinkid="";
+
+</script>
+
+<script type="text/javascript" src="./Virtual Courts _ Home_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./Virtual Courts _ Home_files/jquery.validate.min.js.download"></script>
+
+<script src="./Virtual Courts _ Home_files/bootstrap.bundle.min.js.download"></script>
+<script src="./Virtual Courts _ Home_files/bootstrap.min.js.download"></script>
+
+ 
+  
+
+</head><body id="page-top" style="" class=""><input type="hidden" name="base_url" id="base_url" value="virtualcourt">
+<div id="dialog" style="display:none">
+<p></p>			
+<!--<img src="/virtualcourt/images/new-tab.jpg"/>-->
+</div>
+
+<div class="modal fade" id="loadMe" tabindex="-1" aria-labelledby="loadMeLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+	  <div class="modal-body text-center">
+		<div class="loader"></div>
+		<div clas="loader-txt">
+		  <p>Loading...</p>
+		</div> 
+	  </div>
+	</div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="validateError" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" style="display:none;">
+  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+	<div class="modal-header text-center">
+        <i class="fas fa-3x fa-exclamation-triangle mb-3 text-secondary mx-auto w-100 d-none" id="errorIcon"></i>
+		<i class="fas fa-3x fa-check-circle mb-3 text-success mx-auto w-100 " id="successIcon" aria-hidden="true"></i>
+        <button type="button" class="close" data-bs-dismiss="modal">×</button>
+      </div>
+
+	  <div class="modal-body p-1 text-center">
+		
+		  <div class="alert alert-danger" style="align:center;text-align:center;display: none;word-wrap: break-word;"></div>
+		<div class="alert alert-success" style="align:center;text-align:center;display: none;word-wrap: break-word;"></div>
+		
+	  </div>
+	</div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirm_id" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel" style="display:none;">
+  <div class="modal-dialog modal-sm" role="document">
+	<div class="modal-content">
+	<div class="modal-header text-center">
+        <i class="fas fa-3x fa-exclamation-triangle mb-3 text-secondary mx-auto w-100 " id="errorIcon"></i>
+		
+        <button type="button" class="close" data-bs-dismiss="modal">×</button>
+      </div>
+
+	  <div class="modal-body p-1 text-center">
+		
+		  <div class="alert alert-warning" style="align:center;text-align:center;display: none;word-wrap: break-word;"></div>
+		
+		
+	  </div>
+	  <div class="modal-footer p-1">
+		<button type="button" class="btn btn-secondary " data-bs-dismiss="modal" id="confirm_close">Close</button>
+        <button type="button" class="btn btn-primary " data-bs-dismiss="modal" id="confirm_ok">OK</button>
+      </div>
+
+	</div>
+  </div>
+</div>
+<input type="hidden" name="v_token" id="v_token" value="TRVC01">
+
+
+
+
+	
+	<title>Virtual Courts | Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="Virtual courts, virtual court, traffic challan payment, online fine payment, eChallan, payment for traffic offence, online payment, eCommittee Supreme Court of India">
+	<meta name="description" content="Virtual court enables online adjudication of cases. On pilot basis, the system is being used for traffic and transport challans. The system automatically consumes challans from the eChallan system and allows user to pay fine online for the traffic offences. The case proceedings are completed online and the case is disposed immediately after online payment of the fine. The system is aimed at minimizing the physical presence of litigants and judges in courts, reducing pendency and improving cost efficiency.">
+	<meta name="title" content="Virtual Courts India">
+	<meta name="lang" content="en">
+	<meta name="author" content="">
+
+  <link href="./Virtual Courts _ Home_files/all.min.css" rel="stylesheet" type="text/css">
+<!--
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap" rel="stylesheet">
+-->
+
+
+	<link href="./Virtual Courts _ Home_files/app.css" rel="stylesheet">
+	<link href="./Virtual Courts _ Home_files/mystyle.css" rel="stylesheet">
+	<link rel="stylesheet" href="./Virtual Courts _ Home_files/animate.css">
+	<script src="./Virtual Courts _ Home_files/superdynamic.js.download"></script>
+	<link href="./Virtual Courts _ Home_files/all.min.css" rel="stylesheet" type="text/css">
+
+	<script src="./Virtual Courts _ Home_files/jquery.min.js.download"></script>
+
+
+	<script src="./Virtual Courts _ Home_files/jquery.validate.min.js.download"></script>
+	<script>var sessdate="22-01-2026";</script>
+
+	<script src="./Virtual Courts _ Home_files/index.js.download"></script>
+
+	<script src="./Virtual Courts _ Home_files/ecourts.jquery.min.js.download"></script>
+
+
+<script>
+
+ $(document).ready(function () {
+	 var status='';
+	 if(status=='ERROR')
+	 errorAlert('');
+//$('#fstate_code').chosen();
+});
+</script>
+
+<script>
+$(document).ready(function(){
+	//$("#playButton").hide();
+
+	//$("#demo").carousel( { interval: 5000, pause: "hover", keyboard: true } );
+
+});
+</script>
+
+
+  <!-- Navigation -->
+  <div class="container-fluid topheader fixed-top border-bottom" style="height: 25px;" role="main">
+<div class="row">
+  <div class="col-sm-auto">
+  <ul>
+	<li><a class="p-1 js-scroll-trigger text-white" href="https://vcourts.gov.in/virtualcourt/main.php#mainNav">Skip to navigation</a></li>
+	<li><a class="p-1 js-scroll-trigger text-white" href="https://vcourts.gov.in/virtualcourt/main.php#actionbtn">Skip to main content</a></li>
+	<li class="border-right"><a href="javascript:void(0)" id="decresefont" title="Decrese Font Size" aria-label="A- Decrese Font Size">A-</a></li>
+	<li><a href="javascript:void(0)" id="normalfont" title="Normal Font Size" aria-label="A Normal Font Size">A</a></li>
+	<li><a href="javascript:void(0)" id="incresefont" title="Increse Font Size" aria-label="A+ Increse Font Size">A+</a></li>
+	<li class="bg-white"><a href="https://vcourts.gov.in/virtualcourt/main.php#" class="whitelink text-dark" id="Defaultcontrast" title="Default contrast" style="background:#fff !important;" aria-label="Default contrast">A</a></li>
+	<li class="bg-dark"><a href="https://vcourts.gov.in/virtualcourt/main.php#" class="blacklink text-white" id="Highcontrast" title="High contrast" aria-label="High contrast">A</a></li>
+  </ul>
+  </div>
+  </div>
+</div>
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top px-0" id="mainNav" style="top: 25px;" role="navigation">
+    <div class="container-fluid">
+      <a href="https://vcourts.gov.in/virtualcourt/index.php"><img src="./Virtual Courts _ Home_files/emblem.png" class="float-left img-fluid mx-auto d-block px-1" alt="Emblem of India"></a><a href="https://vcourts.gov.in/virtualcourt/index.php"><img src="./Virtual Courts _ Home_files/ecourts-logo.png" class="float-left img-fluid mx-auto d-block px-1" alt="ecourts India logo"></a>
+	  <div class="col3 p-0" style="overflow: hidden;text-overflow: ellipsis;">
+	  <a class="navbar-brand js-scroll-trigger headingMain" href="https://vcourts.gov.in/virtualcourt/index.php">Virtual Courts</a>
+	  <span class="text-white text-capitalize small d-block d-sm-none" style="white-space: pre;">Tripura (Traffic Department)</span>
+	  </div>
+	  <span class="text-white text-capitalize small d-none d-sm-block">Tripura (Traffic Department)</span>
+
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1" id="menu1" style="display: none;">
+            <a class="nav-link p-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://vcourts.gov.in/virtualcourt/main.php#about">About</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1" id="menu2" style="display: none;">
+            <a class="nav-link p-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://vcourts.gov.in/virtualcourt/main.php#services">Services</a>
+          </li>
+		      <li class="nav-item mx-0 mx-lg-1 d-none" id="menu3">
+            <a class="nav-link p-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://vcourts.gov.in/virtualcourt/main.php#servicesForm">Search Case</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1" id="menu4">
+            <a class="nav-link p-3 px-0 px-lg-3 rounded js-scroll-trigger" href="https://vcourts.gov.in/virtualcourt/main.php#contactus">Contact</a>
+          </li>
+	  
+        </ul>
+      </div>
+  </div></nav>
+
+
+<!-- Form Section -->
+<section class="py-5 bg-primary" id="servicesForm">
+	<div class="container-fluid">
+		<div class="row" id="tabs">
+			<nav class="col-lg-3 px-2 rounded" id="nav-tab" role="tablist">
+				<div class="row mx-1 bg-white">
+					<div class="col-6 p-0 mainmenu"><a class="p-2 m-2 text-center d-block rounded shadow-sm active mainMenuActive" id="mainMenuActive_mobile" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbMobileNumber" role="tab" aria-controls="nav-sbMobileNumber" onclick="navigateme(&#39;nav-sbMobileNumber-tab&#39;)" aria-selected="true"><i class="fa fa-mobile" aria-hidden="true"></i>
+							<p>Mobile Number</p>
+						</a></div>
+					<div class="col-6 p-0 mainmenu"><a class="p-2 m-2 text-center d-block rounded shadow-sm" onclick="navigateme(&#39;nav-sbCNR-tab&#39;)" id="mainMenuActive_cnr" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbCNR" role="tab" aria-controls="nav-sbCNR" aria-selected="false" tabindex="-1"><i class="fa fa-list-ol" aria-hidden="true"></i>
+							<p>CNR Number</p>
+						</a></div>
+				</div>
+
+				<div class="row mx-1 bg-white">
+					<div class="col-6 p-0 mainmenu"><a class="p-2 m-2 text-center d-block rounded shadow-sm" onclick="navigateme(&#39;nav-sbPartyName-tab&#39;)" id="mainMenuActive_party" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbPartyName" role="tab" aria-controls="nav-sbPartyName" aria-selected="false" tabindex="-1"><i class="fa fa-user" aria-hidden="true"></i>
+							<p>Party Name</p>
+						</a></div>
+					<div class="col-6 p-0 mainmenu"><a class="p-2 m-2 text-center d-block rounded shadow-sm" onclick="navigateme(&#39;nav-sbPoliceStation-tab&#39;)" id="mainMenuActive_police" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbPoliceStation" role="tab" aria-controls="nav-sbPoliceStation" aria-selected="false" tabindex="-1"><i class="fa fa-taxi" aria-hidden="true"></i>
+							<p>Challan/Vehicle No.</p>
+						</a></div>
+				</div>
+
+
+				<div class="nav nav-tabs nav-fill d-none" id="nav-tab" role="tablist">
+					<a class="nav-item nav-link mr-lg-1" id="nav-sbMobileNumber-tab" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbMobileNumber" role="tab" aria-controls="nav-sbMobileNumber" aria-selected="false" onclick="navigateme(&#39;no&#39;)" tabindex="-1"><i class="fa fa-mobile" aria-hidden="true"></i>
+						<p>Search by Mobile Number</p>
+					</a>
+					<a class="nav-item nav-link mr-lg-1" id="nav-sbCNR-tab" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbCNR" role="tab" aria-controls="nav-sbCNR" aria-selected="false" onclick="navigateme(&#39;no&#39;)" tabindex="-1"><i class="fa fa-list-ol" aria-hidden="true"></i>
+						<p>Search by CNR Number</p>
+					</a>
+					<a class="nav-item nav-link mr-lg-1" id="nav-sbPartyName-tab" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbPartyName" role="tab" aria-controls="nav-sbPartyName" aria-selected="false" onclick="navigateme(&#39;no&#39;)" tabindex="-1"><i class="fa fa-user" aria-hidden="true"></i>
+						<p>Search by Party Name</p>
+					</a>
+					<a class="nav-item nav-link mr-lg-1" id="nav-sbPoliceStation-tab" data-bs-toggle="tab" href="https://vcourts.gov.in/virtualcourt/main.php#nav-sbPoliceStation" role="tab" aria-controls="nav-sbPoliceStation" aria-selected="false" onclick="navigateme(&#39;no&#39;)" tabindex="-1"><i class="fa fa-taxi" aria-hidden="true"></i>
+						<p>Search by Challan/Vehicle No.</p>
+					</a>
+				</div>
+			</nav>
+
+			<div class="tab-content col-lg-9 rounded-top" id="nav-tabContent">
+				<div class="mainContentTitle p-2 mb-2">Search by Mobile Number</div>
+				<div class="tab-pane fade p-1 active show" id="nav-sbMobileNumber" role="tabpanel" aria-labelledby="nav-sbMobileNumber-tab">
+					<form>
+						<div class="form-group row">
+							<label for="mobile" class="col-sm-3 col-form-label text-lg-right font-weight-bold">Mobile Number</label>
+							<div class="col-sm-3 pl-0">
+								<input type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" style="margin-top:5px !important;" maxlength="10" autocomplete="off">
+							</div>
+						</div>
+
+
+												<div class="form-inline row">
+							<label for="" class="capLabel col-sm-auto offset-sm-2 mr-sm-2 col-form-label font-weight-bold">Captcha</label>
+							<div id="div_captcha_mobile"><div class="form-inline text-left">
+		<div style="">
+		
+					<img style="padding-right: 0px;border:1px solid #ccc;" id="captcha_image" src="./Virtual Courts _ Home_files/securimage_show.php" alt="CAPTCHA Image" tabindex="-1" width="120"><div id="captcha_image_audio_div" style="display:inline">
+<audio id="captcha_image_audio" preload="none" style="display: none">
+<source id="captcha_image_source_wav" src="/virtualcourt/securimage/securimage_play.php?id=6971bb36cfea2" type="audio/wav">
+</audio>
+</div>
+<div id="captcha_image_audio_controls" style="display:inline-block;">
+<a tabindex="0" class="captcha_play_button" href="https://vcourts.gov.in/virtualcourt/securimage/securimage_play.php?id=6971bb36cfea7" onclick="return false">
+<img class="captcha_play_image speaker-btn" height="34" width="39" src="./Virtual Courts _ Home_files/speaker-btn.jpg" alt="Play CAPTCHA Audio" style="border: 0px">
+<img class="captcha_loading_image rotating loading" height="34" width="39" src="./Virtual Courts _ Home_files/refresh-btn.jpg" alt="Loading audio" style="display: none">
+</a>
+<noscript>Enable Javascript for audio controls</noscript>
+</div>
+<script type="text/javascript" src="./Virtual Courts _ Home_files/securimage.js.download"></script>
+<script type="text/javascript">captcha_image_audioObj = new SecurimageAudio({ audioElement: 'captcha_image_audio', controlsElement: 'captcha_image_audio_controls' });</script>
+&nbsp;<a tabindex="0" style="border: 0" href="https://vcourts.gov.in/virtualcourt/main.php#" title="Refresh Image" onclick="if (typeof window.captcha_image_audioObj !== &#39;undefined&#39;) captcha_image_audioObj.refresh(); document.getElementById(&#39;captcha_image&#39;).src = &#39;/virtualcourt/securimage/securimage_show.php?&#39; + Math.random(); this.blur(); return false"><img class="refresh-btn" height="34" width="38" src="./Virtual Courts _ Home_files/refresh-btn.jpg" alt="Refresh Image" onclick="clearCaptchaText();" style="border: 0px; vertical-align: bottom"></a></div></div></div>
+
+							<!--<img class="mr-sm-2 captcha_play_image speaker-btn" src="img/speaker-btn.jpg" alt="Play CAPTCHA Audio" style="border: 0px" width="39" height="34">
+									<img class="mr-sm-2 refresh-btn" src="img/refresh-btn.jpg" alt="Refresh Image" onclick="clearCaptchaText();" style="border: 0px; vertical-align: bottom" width="38" height="34">-->&nbsp;
+							<label for="fcaptcha_code_mobile" class="mr-sm-2 col-form-label text-lg-right font-weight-bold">Enter Captcha</label>
+							<input type="text" class="mr-sm-2 form-control captchaClass" id="fcaptcha_code_mobile" name="fcaptcha_code_mobile" maxlength="6" placeholder="Enter Captcha" style="margin-top:5px !important; " autocomplete="off" onkeypress="return isAlphaNumeric(event)" onpaste="return false" ondrop="return false">
+						</div>
+						<div class="form-group row mt-2">
+							<button type="button" onclick="submitMobile()" class="offset-sm-3 btn btn-primary mb-2">Submit</button>
+						</div>
+
+
+
+
+
+
+					</form>
+
+				</div>
+
+
+
+
+				<div class="tab-pane fade p-1" id="nav-sbCNR" role="tabpanel" aria-labelledby="nav-sbCNR-tab">
+					<form>
+						<div class="form-group row">
+							<label for="cnr" class="col-sm-3 col-form-label text-lg-right font-weight-bold">CNR</label>
+							<div class="col-sm-3 pl-0">
+								<input type="text" class="form-control" id="cnr" placeholder="Enter CNR Number" style="margin-top:5px !important;" maxlength="18" autocomplete="off">
+							</div>
+
+
+						</div>
+						<div class="form-inline row">
+							<label for="" class="capLabel col-sm-auto offset-sm-2 mr-sm-2 col-form-label font-weight-bold">Captcha</label>
+							<div id="div_captcha_cnr">
+
+							</div>
+
+							<!--<img class="mr-sm-2 captcha_play_image speaker-btn" src="img/speaker-btn.jpg" alt="Play CAPTCHA Audio" style="border: 0px" width="39" height="34">
+							<img class="mr-sm-2 refresh-btn" src="img/refresh-btn.jpg" alt="Refresh Image" onclick="clearCaptchaText();" style="border: 0px; vertical-align: bottom" width="38" height="34">-->&nbsp;
+							<label for="fcaptcha_code_cnr" class="mr-sm-2 col-form-label text-lg-right font-weight-bold">Enter Captcha</label>
+							<input type="text" class="mr-sm-2 form-control captchaClass" id="fcaptcha_code_cnr" name="fcaptcha_code_cnr" maxlength="6" placeholder="Enter Captcha" style="margin-top:5px !important; " autocomplete="off" onkeypress="return isAlphaNumeric(event)" onpaste="return false" ondrop="return false">
+						</div>
+						<div class="form-group row">
+
+							<div class="col-sm-3 offset-sm-3 mt-2">
+								<button type="button" class="btn btn-primary mb-2" onclick="submitCNR()">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tab-pane fade p-1" id="nav-sbPartyName" role="tabpanel" aria-labelledby="nav-sbPartyName-tab">
+					<form>
+						<div class="form-group row">
+							<label for="party" class="col-sm-3 col-form-label text-lg-right font-weight-bold">Party Name</label>
+							<div class="col-sm-3 pl-0">
+								<input type="text" class="form-control" id="party" placeholder="Enter Party Name" style="margin-top:5px !important;" autocomplete="off" maxlength="150">
+							</div>
+
+						</div>
+
+						<div class="form-inline row">
+							<label for="" class="capLabel col-sm-auto offset-sm-2 mr-sm-2 col-form-label font-weight-bold">Captcha</label>
+							<div id="div_captcha_party">
+
+							</div>
+							<label for="fcaptcha_code_party" class="mr-sm-2 col-form-label text-lg-right font-weight-bold">Enter Captcha</label>
+							<input type="text" class="mr-sm-2 form-control captchaClass" id="fcaptcha_code_party" name="fcaptcha_code_party" maxlength="6" placeholder="Enter Captcha" style="margin-top:5px !important; " autocomplete="off" onkeypress="return isAlphaNumeric(event)" onpaste="return false" ondrop="return false">
+						</div>
+						<div class="form-group row">
+
+							<div class="col-sm-3 offset-sm-3 mt-2">
+								<button type="button" class="btn btn-primary mb-2" onclick="submitParty()">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+				<div class="tab-pane fade p-1" id="nav-sbPoliceStation" role="tabpanel" aria-labelledby="nav-sbPoliceStation-tab">
+					<form>
+						<div class="form-group row">
+							<label for="challan_no" class="col-sm-3 col-form-label text-lg-right font-weight-bold">Challan Number</label>
+							<div class="col-sm-4 pl-0">
+								<input type="text" class="form-control mb-2 mb-sm-0  mr-lg-1" id="challan_no" placeholder="Enter Challan Number" maxlength="35" autocomplete="off">
+							</div>
+
+							<!--
+
+							<label for="" class="col-sm-2 col-form-label text-lg-right">Vehicle No.</label>
+						    <div class="col-sm-4">
+							  <input type="text" class="form-control mb-2 mb-sm-0  mr-lg-1" id="ffir_no" placeholder="Vehicle No"  maxlength='16'>
+						    </div>
+		-->
+							<div class="col-sm-4 font-weight-bold"> OR </div>
+
+						</div>
+
+						<div class="form-group row">
+
+							<label for="vehicle_no" class="col-sm-3 col-form-label text-lg-right font-weight-bold">Vehicle Number</label>
+							<div class="col-sm-4 pl-0">
+								<input type="text" class="form-control mb-2 mb-sm-0  mr-lg-1" id="vehicle_no" placeholder="Enter Vehicle Number" maxlength="10" autocomplete="off">
+							</div>
+
+
+						</div>
+
+
+
+
+						<div class="form-inline row">
+							<label for="" class="capLabel col-sm-auto offset-sm-2 mr-sm-2 col-form-label font-weight-bold">Captcha</label>
+							<div id="div_captcha_police"><div class="form-inline text-left">
+		<div style="">
+		
+					<img style="padding-right: 0px;border:1px solid #ccc;" id="captcha_image728" src="./Virtual Courts _ Home_files/securimage_show(1).php" alt="CAPTCHA Image" tabindex="-1" width="120"><div id="captcha_image728_audio_div" style="display:inline">
+<audio id="captcha_image728_audio" preload="none" style="display: none">
+<source id="captcha_image728_source_wav" src="/virtualcourt/securimage/securimage_play.php?id=6971bb1b931d1" type="audio/wav">
+</audio>
+</div>
+<div id="captcha_image728_audio_controls" style="display:inline-block;">
+<a tabindex="0" class="captcha_play_button" href="https://vcourts.gov.in/virtualcourt/securimage/securimage_play.php?id=6971bb1b931d6" onclick="return false">
+<img class="captcha_play_image speaker-btn" height="34" width="39" src="./Virtual Courts _ Home_files/speaker-btn.jpg" alt="Play CAPTCHA Audio" style="border: 0px">
+<img class="captcha_loading_image rotating loading" height="34" width="39" src="./Virtual Courts _ Home_files/refresh-btn.jpg" alt="Loading audio" style="display: none">
+</a>
+<noscript>Enable Javascript for audio controls</noscript>
+</div>
+<script type="text/javascript" src="./Virtual Courts _ Home_files/securimage.js.download"></script>
+<script type="text/javascript">captcha_image728_audioObj = new SecurimageAudio({ audioElement: 'captcha_image728_audio', controlsElement: 'captcha_image728_audio_controls' });</script>
+&nbsp;<a tabindex="0" style="border: 0" href="https://vcourts.gov.in/virtualcourt/main.php#" title="Refresh Image" onclick="if (typeof window.captcha_image728_audioObj !== &#39;undefined&#39;) captcha_image728_audioObj.refresh(); document.getElementById(&#39;captcha_image728&#39;).src = &#39;/virtualcourt/securimage/securimage_show.php?&#39; + Math.random(); this.blur(); return false"><img class="refresh-btn" height="34" width="38" src="./Virtual Courts _ Home_files/refresh-btn.jpg" alt="Refresh Image" onclick="clearCaptchaText();" style="border: 0px; vertical-align: bottom"></a></div></div></div>
+							<label for="fcaptcha_code_police" class="mr-sm-2 col-form-label text-lg-right font-weight-bold">Enter Captcha</label>
+							<input type="text" class="mr-sm-2 form-control captchaClass" id="fcaptcha_code_police" name="fcaptcha_code_police" maxlength="6" placeholder="Enter Captcha" style="margin-top:5px !important; " autocomplete="off" onkeypress="return isAlphaNumeric(event)" onpaste="return false" ondrop="return false">
+						</div>
+
+						<div class=" form-group row btn_div_pc mt-2">
+							<div class="col-sm-3"></div>
+							<button type="button" class="btn btn-primary mt-2 mt-sm-0" onclick="submitpoliceForm()">Submit</button>
+						</div>
+					</form>
+				</div>
+
+
+
+
+
+				<div id="payment"></div>
+
+
+
+
+
+				<div class="table-responsive border-top pt-3 resultDiv" style="">
+					<!--<h6 class="text-center divHeading" id='searchresult' style='display:none' >Result</h6>-->
+					<span id="secondpagenew2" style="display: none;">
+<table class="table">
+<tbody><tr>
+<th style="border-top:0px; vertical-align:middle; padding:0px 2px 0 px 0px; ">
+  No. of Records :- 1 
+</th>
+<th class="text-right" style="float:right; border-top:0px;  padding:0px; ">
+
+</th>
+</tr>
+</tbody></table>
+<table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;" class="table table-bordered table-striped text-left servicestbl ">
+
+<thead>
+<tr>
+<th>Sr.No.</th><th> Offence Details </th><th>View</th></tr>
+
+</thead>
+<tbody><tr style="background-color: #F0C987;color:#2b2b2b;">
+		<td> 1     </td>
+		<td>
+		<b> Case No.  </b> : TC/28088  &nbsp;  &nbsp; <b> Challan No.  </b> : TR458109260113073502  &nbsp;  
+		<b> Party Name : </b> MANI LAL BANIK	 <span id="updatestatusTRVC01000280882026">  </span>   &nbsp;  &nbsp;  &nbsp;  <b>Mobile No. :</b> XXXXXX-1364  </td><td> <button type="button" class="btn btn-link" style="color: green;" onclick="view(&#39;TRVC01000280882026&#39;,&#39;0&#39;,&#39;TR458109260113073502&#39;,&#39;0&#39;)">View</button>  </td></tr><tr><td colspan="3"> <table class="table table-bordered table-striped off_tbl w-100 mx-auto">
+																<thead>
+																<tr>
+																	<th>Offence Code	</th>
+																	<th>Offence</th>
+																	<th>Act/Section</th>																
+																	<th>Fine</th>
+																</tr>
+															</thead>
+																<tbody><tr><td width="10%">7207</td><td width="40%">Not wearing a protective headgear (Helmet less riding)</td> <td width="40%"><br><b>Motor Vehicle Act,1988</b><br> <b>Section:</b> 194D-194D <br> </td><td>1000</td></tr><tr><td colspan="3" class="text-lg-right font-weight-bold">Proposed Fine</td><td class="font-weight-bold">1000</td></tr></tbody></table> </td></tr></tbody></table>
+<table class="table" style="margin-top:1%;">
+<tbody><tr>
+<th style="border-top:0px; vertical-align:middle; padding:0px 2px 0 px 0px; ">
+  No. of Records :- 1 
+</th>
+<th class="text-right" style="float:right; border-top:0px;  padding:0px; ">
+
+</th>
+</tr>
+</tbody></table>
+<input type="hidden" value="" id="skipcaptcha" name="skipcaptcha"></span>
+				</div>
+
+				<div id="viewDetailsDiv" style=""><h6 class="text-center divHeading">Case Details</h6><div class="table-responsive">
+<div class="md-12 text-center"><input type="button" id="back" onclick="back()" value="Back" class="btn btn-primary mydBtn "></div>
+<input type="hidden" name="fcino" id="fcino" value="TRVC01000280882026">
+<input type="hidden" name="fparty_no" id="fparty_no" value="0"> <table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;" class="table table-bordered table-striped servicestbl w-75 mx-auto"><thead>
+<tr>
+<th colspan="2">Virtual Court Case Details</th>
+</tr>
+</thead>
+<tbody><tr><td>Registration No. </td><td>TC/28088/2026</td></tr><tr><td>Date of Registration</td><td>22-01-2026</td></tr><tr><td>CNR </td><td>TRVC01-00028088-2026</td></tr><tr><td>Challan No.  </td><td>TR458109260113073502</td></tr><tr><td>Challan Date.  </td><td>07-01-2026 09:36:38 </td></tr><tr><td>Name </td><td>MANI LAL BANIK</td></tr><tr><td>Place of Offence </td><td>Gurakha Basti RLVD,Approach From Circuit House</td></tr><tr><td>District Name </td><td>SP Traffic</td></tr><tr><td>Circle Name </td><td>Agartala</td></tr></tbody><thead>
+<tr>
+<th colspan="2">Current Status</th>
+</tr>
+</thead>
+<tbody>
+<tr style="color:green;"><td>Received  Date </td><td>22-01-2026 </td></tr>
+ <tr style="color:green;"><td>Verified  Date </td><td>22-01-2026</td></tr> <tr style="color:green;"><td>Allocated Date </td><td>22-01-2026</td></tr> <tr style="color:green;"><td>Date of Proceeding </td><td>22-01-2026</td></tr> 
+</tbody></table><table class="table table-bordered table-striped servicestbl w-75 mx-auto">
+															<thead>
+															  <tr>
+																<th>Offence Code</th>
+																<th>Offence</th>
+																<th>Act</th>
+																<th>Section</th>
+																<th>Fine</th>
+															  </tr>
+														  </thead>
+															  <tbody><tr><td>7207</td><td>Not wearing a protective headgear (Helmet less riding)</td><td>Motor Vehicle Act,1988 -  </td><td><br><b>Motor Vehicle Act,1988</b><br> <b>Section:</b> 194D-194D<br></td><td>1000</td></tr> <tr><td colspan="4" class="text-lg-right font-weight-bold">Proposed Fine</td><td class="font-weight-bold">1000.00<input type="hidden" id="total_proposed_fine" value="1000.00"> </td></tr></tbody></table></div><div class="form-group row alert alert-warning w-75 mx-auto" id="hideifverified1">
+						    <label for="" class="col-sm-6 col-form-label"><i class="fa fa-star" style="color:red;" aria-hidden="true"></i> Choose one of the following options</label>
+							<div class="col-sm-6"></div>
+							</div><div class="alert alert-primary w-75 mx-auto acc_con_div" id="hideifverified2">
+							<div class="form-check">
+							  <label class="form-check-label">
+							    <input type="radio" class="form-check-input" value="P" id="acceptandpay" name="accept_contest" onclick="showOTP(this.value)">I wish to pay the proposed fine.
+							  </label>
+							</div>
+							<div class="form-check">
+							  <label class="form-check-label">
+							    <input type="radio" class="form-check-input" value="C" id="contestandsubmit" name="accept_contest" onclick="showOTP(this.value)">I wish to contest the case.
+							  </label>
+							</div><div class="form-check">
+							  <label class="form-check-label">
+							    <input type="radio" class="form-check-input" value="E" id="incorrectsubmit" name="accept_contest" onclick="showOTP(this.value)">My name or mobile number is incorrect.I wish to pay the fine by verifying Engine No and Chasis No. 
+							  </label>
+							</div>
+							
+							<div class="form-check">
+							  <label class="form-check-label">
+							    <input type="radio" class="form-check-input" value="CO" id="contest_incorrectsubmit" name="accept_contest" onclick="showOTP(this.value)">My name or mobile number is incorrect.I wish to contest the case by verifying Engine No and Chasis No. 
+							  </label>
+							</div><input type="hidden" id="accept_contest">
+						</div>
+						<div class="alert alert-warning w-75 mx-auto acc_con_div d-none" id="contest_info">
+							<ul>
+							<li>Once you contest case, you can not pay fine</li>
+							<li>The case will be transfered to regular court</li>
+							</ul>
+
+						</div><form id="confirmDiv" class="border-top pt-3" style="display: none;">
+<div class="incorrect_div">
+
+<div id="cha_eng" style="display:none;">
+
+
+<div class="form-group row" id="showhide_owner">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Owner Name.</label>
+<div class="col-sm-5">
+<span id="owner_name"></span>
+</div>
+
+</div>
+
+
+
+<div class="form-group row" id="showhide_chano">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Chasis No.</label>
+<div class="col-sm-3">
+<label id="fcha_no"></label><input type="text" id="fcha_no_add" name="fcha_no_add" value="" size="4" maxlength="4" placeholder="Last 4 digits"> OR
+</div>
+ 
+</div>
+
+<div class="form-group row" id="showhide_engno">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Engine No.</label>
+<div class="col-sm-3">
+<label id="feng_no"></label><input type="text" id="feng_no_add" name="feng_no_add" value="" maxlength="4" placeholder="Last 4 digits" size="4">
+</div>
+</div>
+
+<div class="form-group row" id="showhide_payee">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Payee Name:</label>
+<div class="form-check">
+<label class="form-check-label">
+<input type="checkbox" class="form-check-input" value="PY" id="payee" name="payee" onclick="hide_payee(this.value)">Same as Owner name.
+</label>
+</div>
+</div>
+
+<div class="form-group row" id="showhide_payee_name">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Payee Name:</label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="payee_name" name="payee_name" placeholder="Enter Payee Name">
+</div>
+</div>
+
+
+<div id="xx_otp_ce" class="form-group row ">
+
+<label for="" class="col-sm-3 col-form-label text-lg-right">Payee Mobile Number:</label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="otp_mobile_ce" name="otp_mobile_ce" placeholder="Enter Mobile Number" maxlength="10">
+<input type="hidden" class="form-control" id="otp_mobile1_ce" name="otp_mobile1">
+</div>
+<div class="col-sm-3">
+<button type="button" id="generate_otp1" class="btn btn-primary mb-2" onclick="generateOTP_ce()">Generate OTP</button>
+
+
+        <div id="regenerate_otp_msg_ce" style="display:none;color;color:red;">
+                <label for="" class="col-form-label text-lg-left">OTP Generated for 3 times,Please Regenerate OTP after 2 Min</label>
+        </div>
+<div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+        <time id="countdown">
+        </time>
+        <img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+</div>
+
+</div>
+</div>
+
+<div id="vv_otp_ce" class="form-group row">
+<label for="" class="col-sm-3 col-form-label text-lg-right">OTP</label>
+<div class="col-sm-3">
+<input type="password" class="form-control" id="otp_ce" value="" maxlength="6" placeholder="XXXXXX">
+</div>
+<div class="col-sm-3">
+<button type="button" id="generate_otp_ce" class="btn btn-primary mb-2" onclick="verify_pin_ce(&#39;E&#39;)">Verify OTP</button>
+
+<div id="verify_pin_msg_ce" style="display:none;color;color:red;">
+        <label for="" class="col-form-label text-lg-left">3 Invalid attempt, Please Regenerate OTP after 2 Min</label>
+</div>
+<div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+        <time id="countdown">
+        </time>
+        <img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+<div class="contest_incorrect_div">
+
+<div id="contest_cha_eng">
+
+
+<div class="form-group row" id="contest_showhide_owner">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Owner Name.</label>
+<div class="col-sm-5">
+<span id="contest_owner_name"></span>
+</div>
+
+</div>
+
+
+
+<div class="form-group row" id="contest_showhide_chano">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Chasis No.</label>
+<div class="col-sm-3">
+<label id="fcha_no1"></label><input type="text" id="contest_fcha_no_add" name="contest_fcha_no_add" value="" size="4" maxlength="4" placeholder="Last 4 digits"> OR
+</div>
+ 
+</div>
+
+<div class="form-group row" id="contest_showhide_engno">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Engine No.</label>
+<div class="col-sm-3">
+<label id="feng_no1"></label><input type="text" id="contest_feng_no_add" name="contest_feng_no_add" value="" maxlength="4" placeholder="Last 4 digits" size="4">
+</div>
+</div>
+
+<div class="form-group row" id="contest_showhide_payee">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Offender Name:</label>
+<div class="form-check">
+<label class="form-check-label">
+<input type="checkbox" class="form-check-input" value="C_PY" id="contest_payee" name="contest_payee" onclick="hide_payee(this.value)">Same as Owner name.
+</label>
+</div>
+</div>
+
+<div class="form-group row" id="contest_showhide_payee_name">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Offender Name:</label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="contest_payee_name" name="contest_payee_name" placeholder="Enter Offender Name">
+</div>
+</div>
+
+
+<div class="form-group row" id="contest_remark_ce_div">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Remark</label>
+<div class="col-sm-3">
+<textarea class="form-control" id="contest_remark_co" name="contest_remark_co" placeholder="Remark"> </textarea>
+</div>
+</div>
+
+
+
+
+<div id="xx_otp_contest" class="form-group row ">
+
+<label for="" class="col-sm-3 col-form-label text-lg-right">Offender Mobile Number:</label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="contest_otp_mobile_ce" name="contest_otp_mobile_ce" placeholder="Enter Mobile Number" maxlength="10">
+<input type="hidden" class="form-control" id="contest_otp_mobile1_ce" name="contest_otp_mobile1_ce">
+</div>
+<div class="col-sm-3">
+<button type="button" id="contest_generate_otp1" class="btn btn-primary mb-2" onclick="contest_generateOTP_ce()">Generate OTP</button>
+
+        <div id="contest_regenerate_otp_msg_ce" style="display:none;color;color:red;">
+                <label for="" class="col-form-label text-lg-left">OTP Generated for 3 times,Please Regenerate OTP after 2 Min</label>
+        </div>
+<div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+        <time id="countdown">
+        </time>
+        <img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+</div>
+
+
+
+
+</div>
+</div>
+
+<div id="vv_otp_contest" class="form-group row">
+<label for="" class="col-sm-3 col-form-label text-lg-right">OTP</label>
+<div class="col-sm-3">
+<input type="password" class="form-control" id="contest_otp_ce" value="" maxlength="6" placeholder="XXXXXX">
+</div>
+<div class="col-sm-3">
+<button type="button" id="contest_generate_otp_ce" class="btn btn-primary mb-2" onclick="verify_pin_ce(&#39;CO&#39;)">Verify OTP</button>
+
+<div id="contest_verify_pin_msg_ce" style="display:none;color;color:red;">
+        <label for="" class="col-form-label text-lg-left">3 Invalid attempt, Please Regenerate OTP after 2 Min</label>
+</div>
+<div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+        <time id="countdown">
+        </time>
+        <img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+</div>
+
+
+
+</div>
+</div>
+</div>
+										
+
+<div class="form-group row" style="display:none;" id="showhidecorrection">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Correction Type </label>
+
+
+<div class="col-sm-6 dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+Select
+</button>
+<input id="correctiontype" value="" type="hidden">
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="white-space: normal;">
+<a class="dropdown-item text-white di1" href="javascript:setval(&#39;N&#39;)" id="N">I have received SMS notification, my mobile no. is correct and vehicle belongs to me/used by me but my Name is incorrect.</a>
+
+<a class="dropdown-item  text-white di2" href="javascript:setval(&#39;A&#39;)" id="A">I have received SMS notification, my name is not shown as offender. I am no way concerned with vehicle or offence mentioned above</a>
+
+<a class="dropdown-item  text-white di3" href="javascript:setval(&#39;K&#39;)" id="K">I have received SMS notification. I am previous registered owner of the vehicle. I know name or mobile of existing registered owner</a>
+
+<a class="dropdown-item  text-white di4" href="javascript:setval(&#39;O&#39;)" id="O">I have not received notification I have searched this case by vehicle registration Number. My name and mobile are not shown as registered owner I want to update details so as to proceed with the case on my name.</a>
+
+<a class="dropdown-item text-white di5" href="javascript:setval(&#39;M&#39;)" id="M">I have not received notification. I have received intimation from police. Challan No. search shows my name but my mobile seems to be incorrect. I want to update my mobile Number so as to proceed with the case.</a>
+
+</div>
+</div>
+</div>
+
+<div class="form-group row" id="showhidecorrection2">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Existing owner Name</label>
+<div class="col-sm-2">
+<input type="text" class="form-control" id="ffirst_name" name="ffirst_name" value="" placeholder="First Name" maxlength="99">
+</div>
+<div class="col-sm-2">
+<input type="text" class="form-control" id="fmiddel_name" name="fmiddel_name" value="" placeholder="Middle Name" maxlength="99">
+</div>
+
+
+<div class="col-sm-2">
+<input type="text" class="form-control" id="flast_name" name="flast_name" value="" placeholder="Last Name" maxlength="99">
+</div>
+
+</div>
+
+<div class="form-group row" style="display:none;" id="existing_owner_mobile">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Existing owner Mobile No. </label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="fexisting_owner_mobile" name="fexisting_owner_mobile" value="" placeholder="Existing owner Mobile No." maxlength="10">
+</div>
+
+</div>
+
+</div>
+
+<div class="form-group row " id="xx_otp">
+
+<label for="" class="col-sm-3 col-form-label text-lg-right">Mobile Number</label>
+<div class="col-sm-3">
+<input type="text" class="form-control" id="otp_mobile" name="otp_mobile" value="XXXXXX-1364" placeholder="Enter Mobile Number" maxlength="10" readonly="">
+<input type="hidden" class="form-control" id="otp_mobile1" name="otp_mobile1" value="XXXXXX-1364">
+<input type="hidden" class="form-control" id="mobile_no1" name="mobile_no1" value="9862211364">
+</div>
+<div class="col-sm-6">
+<button type="button" id="generate_otp" class="btn btn-primary mb-2" onclick="generateOTP()">Generate OTP</button>
+        <div id="regenerate_otp_msg" style="display:none;color;color:red;">
+                <label for="" class="col-form-label text-lg-left">OTP Generated for 3 times,Please Regenerate OTP after 2 Min</label>
+        </div>
+       <div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+               <time id="countdown"></time>
+               <img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+        </div>
+
+</div>
+</div>
+
+<div class="form-group row" id="vv_otp">
+	<label for="" class="col-sm-3 col-form-label text-lg-right">OTP</label>
+	<div class="col-sm-3">
+		<input type="password" class="form-control" id="otp" value="" maxlength="6" placeholder="XXXXXX" onkeypress="return isDigitsOnly(event)" oninput="this.value=this.value.replace(/[^0-9]/g," ")"="">
+	</div>
+	<div class="col-sm-6">
+		<button type="button" id="verifypin" class="btn btn-primary mb-2" onclick="verify_pin()">Verify OTP</button>
+		<div id="verify_pin_msg" style="display:none;color;color:red;">
+			<label for="" class="col-form-label text-lg-left">3 Invalid attempt, Please Regenerate OTP after 2 Min</label>
+		</div>
+		<div id="countdowndiv" style="display:none;color:#555;font-weight:bold;font-size:18px;border:1px solid #ccc;padding: 2px 10px;text-align: LEFT;width:max-content">
+			<time id="countdown"></time>
+			<img src="./Virtual Courts _ Home_files/hourglass.png" class="hourglass" style="width:15px;height:15px;">
+		</div>
+	</div>
+</div>
+
+<div class="form-group row" id="contest_remark_div">
+<label for="" class="col-sm-3 col-form-label text-lg-right">Remark</label>
+<div class="col-sm-3">
+<textarea class="form-control" id="contest_remark" name="contest_remark" placeholder="Remark"> </textarea>
+</div>
+</div>
+					
+<div class="form-group row" id="showsummons" style="display:none">
+		   <div class="col-sm-9 offset-sm-3"><a style="color:#ec0404;" data-bs-toggle="modal" href="https://vcourts.gov.in/virtualcourt/main.php#viewSummons">Click here to view summons</a></div>
+		 </div> <div class="alert alert-info w-75 mx-auto acc_con_div" id="showsummons2" style="display:none">
+			
+
+			<div class="form-check" id="showagree" style="display:none">
+			  <label class="form-check-label">
+				<input type="checkbox" class="form-check-input" id="understood_agree" name="understood_agree" onclick="showsubmit(this.value)">
+				<a style="color:#0c5460" data-bs-toggle="modal" href="https://vcourts.gov.in/virtualcourt/main.php#viewAgree"><u>I agree to the <strong>Terms and Conditions.</strong></u></a>
+			  </label>
+			</div>
+
+
+			<div class="form-check">
+			  <label class="form-check-label">
+				<input type="checkbox" class="form-check-input" id="understood_summons" name="understood_summons" onclick="showsubmit(this.value)"> <span id="understood_text">I have understood the contents of Special Summons.</span>
+			  </label>
+			</div>
+
+
+
+		</div>
+
+		  <div class="form-group row" id="hidepayfine" style="display:none">
+			<div class="col-sm-9 offset-sm-3">
+			  <button type="button" class="btn btn-primary mb-2" id="accept_btn" onclick="payfine()">Accept &amp; Pay</button>
+			</div>
+		  </div>
+		</form>
+		<div id="redirect" style="display:none;"></div>
+		</div>
+
+
+
+
+
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+	
+</section>
+
+ 
+<!-- The Modal -->
+<div class="modal fade" id="viewAgree" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="max-width:600px;font-size: .9rem;line-height: 1rem;" role="document">
+    <div class="modal-content" style="padding:18px;">
+
+      <!-- Modal Header -->
+      <div class="modal-header p-0">
+     
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+	<div class="modal-body p-2" id="displayagree"><h5>Terms and Conditions :</h5>
+The web site vcourts.gov.in is designed and developed by National Informatics Centre under eCourts project for the e-Committee Supreme Court of India. Payment APIs are shared by the High Courts and Government Finance Departments of the respective states. In case of any issues during or after payment, user may contact the respective Subordinate Court, High Court or Finance and Treasury Department of the respective State. Neither e-Committee nor National Informatics Centre will be responsible in any way for non-payment, non-receipt, issue that may arise while paying the amount online for any kind of payments made through this portal. Though all efforts have been made to ensure the accuracy and correctness of the contents on this website, the same should not be construed as a statement of law or used for any legal purposes. In case of any ambiguity or doubts, users are advised to verify / check with the authorities concerned of District Court of High Court. In case of any variance between what is stated and that contained in the relevant Acts, Rules, Regulations, Policy, Statements, etc, the latter shall prevail. Under no circumstances will e-Committee, High Court or National Informatics Centre be liable for any expense, loss or damage including, without limitation, indirect or consequential loss or damage, or any expense, loss or damage whatsoever arising from use, or loss of use, of data, arising out of or in connection with the use of this website. These terms and conditions shall be governed by and construed in accordance with the Indian Laws. Any dispute arising under these terms and conditions shall be subject to the jurisdiction of the courts of India only.Irrespective of status shown in acknowledgement or portal or notifications, all the concerned may verify as to whether amount paid has actually been credited to the desired Court Account.</div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer p-1">
+	  <!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+
+<!------ PRIVACY POLICY ------->
+
+  <!-- The Modal -->
+<div class="modal fade" id="viewPrivacy" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="max-width:600px;font-size: .9rem;line-height: 1rem;" role="document">
+    <div class="modal-content" style="padding:18px;">
+
+      <!-- Modal Header -->
+      <div class="modal-header p-0">
+     
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+	<div class="modal-body p-2" id="displayprivacy"><h5>Privacy Policy :</h5>
+We do not sell or share any personally identifiable information volunteered on the Virtual Courts website to any third party (public/private). Any information provided to this website will be protected from loss, misuse, unauthorized access or disclosure, alteration, or destruction. 
+Virtual courts site gathers certain information about the user, such as Internet protocol (IP) addresses, domain name, browser type, operating system, the date and time of the visit and the pages visited. We do not attempt to link these addresses with the identity of individuals visiting our site unless an attempt to damage the site has been detected.       </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer p-1">
+	  <!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!------ PRIVACY POLICY END------->
+
+<!------ Refund and Cancellation Policy ------->
+
+  <!-- The Modal -->
+<div class="modal fade" id="viewRefund" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="max-width:600px;font-size: .9rem;line-height: 1rem;" role="document">
+    <div class="modal-content" style="padding:18px;">
+
+      <!-- Modal Header -->
+      <div class="modal-header p-0">
+     
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+	<div class="modal-body p-2" id="displayrefund"><h5>Refund and Cancellation Policy :</h5>
+Virtual courts are governed by rules and procedures of the respective High Courts as such cancellation or refund of any money paid or otherwise, is bound by rules of the respective High Courts.       </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer p-1">
+	  <!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!------ Refund and Cancellation Policy END------->
+
+<!------ Hyperlinking Policy ------->
+
+  <!-- The Modal -->
+<div class="modal fade" id="hyperlinking" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="max-width:600px;font-size: .9rem;line-height: 1rem;" role="document">
+    <div class="modal-content" style="padding:18px;">
+
+      <!-- Modal Header -->
+      <div class="modal-header p-0">
+     
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+	<div class="modal-body p-2" id="">
+	<h5>Hyperlinking Policy :</h5>
+	<p>
+At many places in this website, you will find links to other websites/portals. These links have been placed for your convenience. e-Committee Supreme Court of India is not in any way responsible for the contents and reliability of the linked websites and does not necessarily endorse the views expressed in them. Mere presence of the link or its listing on this website should not be assumed as endorsement of any kind. We cannot guarantee that these links will work all the time and we have no control over availability of linked pages.
+</p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer p-1">
+	  <!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!------ Hyperlinking Policy END------->
+
+
+ <!-- Contact Section -->
+  <footer class="pt-5 pb-2" id="contactus" role="contentinfo">
+    <div class="container-fluid wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+			<!--<div class="pt-md-2 pb-md-2 mx-auto text-center">
+		      <h2 class="heading2">Contact Us</h2>
+		      <p class="lead">In case of query or issue related to availability or updation of case-data on this portal, please get in touch with us
+		    </div>-->
+
+		    <div class="row pb-2">
+		    	<div class="col-lg-3">
+		    		<div class=""><span class="fooTitle">Quick Links</span></div>
+		    		<div class="row foolinks">
+		    			<div class="col-md-12">
+		    				<ul class="foo_links">
+		    			           <!--<li><a class="js-scroll-trigger" href="#about">About Virtual Courts</a></li>-->
+		    					<li><a href="https://vcourts.gov.in/virtualcourt/sitemap.php">Sitemap</a></li>
+		    					<li><a href="https://vcourts.gov.in/virtualcourt/help.php">Help</a></li>
+		    					<li><a href="https://vcourts.gov.in/virtualcourt/contact_us.php?state_code=20">Contact Us</a></li>
+								<!-- <li><a href="">Feedback</a></li>-->
+                                                            <li><a href="https://vcourts.gov.in/virtualcourt/about_us.php">About Us</a></li>
+                                                                <li><a href="https://vcourts.gov.in/virtualcourt/web_info.php">Web Information Manager</a></li>
+                                                                <li><a href="https://vcourts.gov.in/virtualcourt/faq.php">FAQ</a></li>
+                                                        <li><a href="https://vcourts.gov.in/virtualcourt/CopyrightPolicy.php">Copyright Policy</a></li>
+                                                        <li><a href="https://vcourts.gov.in/virtualcourt/view_agree.php">Terms &amp; Conditions</a></li>
+                                                                <li><a href="https://vcourts.gov.in/virtualcourt/view_privacy.php">Privacy Policy</a></li>
+                                                                <li><a href="https://vcourts.gov.in/virtualcourt/view_refund.php">Refund &amp; Cancellation Policy</a></li>
+                                                        <li><a href="https://vcourts.gov.in/virtualcourt/hyperlinking.php">Hyper Linking Policy</a></li>
+                                                        <li><a href="https://vcourts.gov.in/virtualcourt/sr_access.php">Screen Reader Access</a></li>
+		    				</ul>
+		    			</div>
+		    		</div>
+
+		        </div>
+
+
+				<div class="col-lg-6" style="    border-left: 0.025rem solid #425364 !important;">
+					<div class="">&nbsp;</div>
+					<div class="row foolinks">
+		    			<div class="col-12 text-lg-left text-center">						
+							<a href="http://www.digitalindia.gov.in/" target="_blank" title="Digital India External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/di-logo.png" alt="Digital India External website that opens a new window">
+							</a>
+							<a href="http://www.india.gov.in/" target="_blank" title="National Portal of India External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/india-gov-logo.png" alt="National Portal of India External website that opens a new window">
+							</a>
+							<a href="http://doj.gov.in/" target="_blank" title="Department of Justice External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/DOJ-logo.png" alt="Department of Justice External website that opens a new window">
+							</a>
+							<a href="https://ecommitteesci.gov.in/" target="_blank" title="e-Committee Supreme Court of India External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/ecommittee-logo.png" alt="e-Committee Supreme Court of India">
+							</a>
+							<a href="http://indiacode.nic.in/" target="_blank" title="India Code External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/IC-logo.png" alt="India Code Centre External website that opens a new window">
+							</a>
+							<a href="https://www.nic.in/" target="_blank" title="National Informatics Centre External website that opens a new window">
+								<img class="img-fluid mx-auto" src="./Virtual Courts _ Home_files/NIC-logo.png" alt="National Informatics Centre External website that opens a new window">
+							</a>
+							<hr style="    border-top: 0.025rem solid #425364 !important;">
+		    				<p>Content reviewed and updated on: 24 May 2024</p>
+		    			</div>
+		    		</div>
+
+		        </div>
+
+		        </div>
+			</div>
+
+			<div class="mx-auto text-center border-top pt-3 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+		      <p class="footext">This site is designed, developed, hosted and maintained by National Informatics Centre, Ministry of Electronics &amp; Information Technology, Government of India.</p>
+
+			  <p class="footext1">© 2019 eCommittee Supreme Court of India | All Rights Reserved</p>
+		    </div>
+
+    
+		<div>B1</div>
+  </footer>
+<script>
+$(document).ready(function(){
+
+	$('#incresefont').click(function(){	
+        curSize= parseInt($('body').css('font-size')) + 1;
+		if(curSize<=18)
+			$('body').css('font-size', curSize);
+        });  
+
+		$('#decresefont').click(function(){	   
+        curSize= parseInt($('body').css('font-size')) - 1;
+		if(curSize>=14)
+			$('body').css('font-size', curSize);
+        }); 
+
+		$("#normalfont").click(function(){
+			curSize= 16;
+		$("body").css("font-size",curSize);
+    });
+
+	$('.blacklink').click(function (){
+		$('link[href="css/app.css"]').attr('href','css/app-dark.css');
+		$('link[href="css/mystyle.css"]').attr('href','css/mystyle-dark.css');
+	});
+	$('.whitelink').click(function (){
+		$('link[href="css/app-dark.css"]').attr('href','css/app.css');
+		$('link[href="css/mystyle-dark.css"]').attr('href','css/mystyle.css');
+	});
+
+});
+</script>
+
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed " style="display: block;">
+	<a class="js-scroll-trigger d-block text-center text-white rounded" href="https://vcourts.gov.in/virtualcourt/main.php#page-top" aria-label="scroll to top">
+		<i class="fa fa-chevron-up"></i>
+	</a>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="viewSummons">
+	<div class="modal-dialog w-80">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+
+				<button type="button" class="close" data-bs-dismiss="modal">×</button>
+			</div>
+			<!-- Modal body -->
+			<div class="modal-body p-2" id="displaysummons">
+<object data="data:application/pdf;base64,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CjUgMCBvYmoKPDwvVHlwZSAvRXh0R1N0YXRlCi9CTSAvTm9ybWFsCi9jYSAxCi9DQSAxCj4+CmVuZG9iago2IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL1N1YnR5cGUgL1R5cGUwCi9CYXNlRm9udCAvTVBERkFBK0RlamFWdVNlcmlmQ29uZGVuc2VkLUJvbGQKL0VuY29kaW5nIC9JZGVudGl0eS1ICi9EZXNjZW5kYW50Rm9udHMgWzcgMCBSXQovVG9Vbmljb2RlIDggMCBSCj4+CmVuZG9iago3IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL1N1YnR5cGUgL0NJREZvbnRUeXBlMgovQmFzZUZvbnQgL01QREZBQStEZWphVnVTZXJpZkNvbmRlbnNlZC1Cb2xkCi9DSURTeXN0ZW1JbmZvIDkgMCBSCi9Gb250RGVzY3JpcHRvciAxMCAwIFIKL0RXIDU0MAovVyBbIDMyIFsgMzEzIDM5NSA0NjkgNzU0IDYyNiA4NTUgODEzIDI3NSA0MjYgNDI2IDQ3MCA3NTQgMzEzIDM3NCAzMTMgMzI5IF0KIDQ4IDU3IDYyNiA1OCA1OSAzMzIgNjAgNjIgNzU0IDYzIFsgNTI3IDkwMCA2OTggNzYwIDcxNiA3ODAgNjg2IDYzOSA3NjkgODUwIDQyMSA0MjYgNzgyIDYzMyA5OTYgODIyIDc4NCA2NzcgNzg0IDc0OCA2NTAgNjY5IDc4NSA2OTggMTAxMSA2OTggNjQyIDY1NyA0MjYgMzI5IDQyNiA3NTQgNDUwIDQ1MCA1ODMgNjI5IDU0OCA2MjkgNTcyIDM4NyA2MjkgNjU0IDM0MiAzMjUgNjI0IDM0MiA5NTIgNjU0IDYwMCA2MjkgNjI5IDQ3NCA1MDYgNDE2IDY1NCA1MjMgNzc0IDUzNiA1MjMgNTExIDU3OSAzMjcgNTc5IDc1NCBdCiAxNjAgWyAzMTMgMzk1IDYyNiA2MjYgNTcyIDYyNiAzMjcgNDcwIDQ1MCA5MDAgNDM4IDU2MyA3NTQgMzc0IDkwMCA0NTAgNDUwIDc1NCAzOTQgMzk0IDQ1MCA2NTkgNTcyIDMxMyA0NTAgMzk0IDQ1MCA1NjMgXQogMTg4IDE5MCA5MzggMTkxIDE5MSA1MjcgMTkyIDE5NyA2OTggMTk4IFsgOTMxIDcxNiBdCiAyMDAgMjAzIDY4NiAyMDQgMjA3IDQyMSAyMDggWyA3ODcgODIyIF0KIDIxMCAyMTQgNzg0IDIxNSBbIDc1NCA3ODQgXQogMjE3IDIyMCA3ODUgMjIxIFsgNjQyIDY4MSA2ODQgXQogMjI0IDIyOSA1ODMgMjMwIFsgODc3IDU0OCBdCiAyMzIgMjM1IDU3MiAyMzYgMjM5IDM0MiAyNDAgWyA2MDAgNjU0IDYwMCA2MDAgNjAwIDYwMCA2MDAgXQogMjQ3IFsgNzU0IDYwMCBdCiAyNDkgMjUyIDY1NCAyNTMgWyA1MjMgNjI5IDUyMyBdCiA4Mzc3IDgzNzcgNjI2IF0KL0NJRFRvR0lETWFwIDExIDAgUgo+PgplbmRvYmoKOCAwIG9iago8PC9MZW5ndGggMzQ2Pj4Kc3RyZWFtCi9DSURJbml0IC9Qcm9jU2V0IGZpbmRyZXNvdXJjZSBiZWdpbgoxMiBkaWN0IGJlZ2luCmJlZ2luY21hcAovQ0lEU3lzdGVtSW5mbwo8PC9SZWdpc3RyeSAoQWRvYmUpCi9PcmRlcmluZyAoVUNTKQovU3VwcGxlbWVudCAwCj4+IGRlZgovQ01hcE5hbWUgL0Fkb2JlLUlkZW50aXR5LVVDUyBkZWYKL0NNYXBUeXBlIDIgZGVmCjEgYmVnaW5jb2Rlc3BhY2VyYW5nZQo8MDAwMD4gPEZGRkY+CmVuZGNvZGVzcGFjZXJhbmdlCjEgYmVnaW5iZnJhbmdlCjwwMDAwPiA8RkZGRj4gPDAwMDA+CmVuZGJmcmFuZ2UKZW5kY21hcApDTWFwTmFtZSBjdXJyZW50ZGljdCAvQ01hcCBkZWZpbmVyZXNvdXJjZSBwb3AKZW5kCmVuZAoKZW5kc3RyZWFtCmVuZG9iago5IDAgb2JqCjw8L1JlZ2lzdHJ5IChBZG9iZSkKL09yZGVyaW5nIChVQ1MpCi9TdXBwbGVtZW50IDAKPj4KZW5kb2JqCjEwIDAgb2JqCjw8L1R5cGUgL0ZvbnREZXNjcmlwdG9yCi9Gb250TmFtZSAvTVBERkFBK0RlamFWdVNlcmlmQ29uZGVuc2VkLUJvbGQKIC9DYXBIZWlnaHQgNzI5CiAvWEhlaWdodCA1MTkKIC9Gb250QkJveCBbLTc1MiAtMzg5IDE2MTcgMTE0NV0KIC9G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" type="application/pdf" width="100%" height="600px">
+  <p>PDF cannot be displayed.</p>
+</object></div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer p-1">
+				<!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+				<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="viewAgree" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="max-width:600px;font-size: .9rem;line-height: 1rem;">
+		<div class="modal-content" style="padding:18px;">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+
+				<button type="button" class="close" data-bs-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body p-2" id="displayagree">
+			</div>
+
+			<!-- Modal footer -->
+			<div class="modal-footer p-1">
+				<!-- 7/25/2019 <button type="button" class="btn btn-primary btn-sm" onclick='printElement();' >Print</button>-->
+				<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Close</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- changes for image view by megha  -->
+<div class="modal fade " id="viewImage1" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-bs-dismiss="modal">×</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<img id="trafficImage" src="https://vcourts.gov.in/virtualcourt/main.php" style="width: 100%" alt="traffic Image">
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<!-- changes for image view by megha  -->
+
+
+
+<script src="./Virtual Courts _ Home_files/jquery.min(1).js.download"></script>
+<script src="./Virtual Courts _ Home_files/bootstrap.bundle.min.js.download"></script>
+<script src="./Virtual Courts _ Home_files/jquery.easing.min.js.download"></script>
+<script src="./Virtual Courts _ Home_files/app.min.js.download"></script>
+<script src="./Virtual Courts _ Home_files/wow.min.js.download"></script>
+<script type="text/javascript" src="./Virtual Courts _ Home_files/superdynamic.js.download"></script>
+<script>
+	new WOW().init();
+	$(document).ready(function() {
+		$("#menu1").hide();
+		$("#menu2").hide();
+	});
+</script>
+
+
+<div id="ahXPitXciTgUPRT" style="color-scheme: initial; forced-color-adjust: initial; mask: initial; math-depth: initial; position: relative; position-anchor: initial; text-size-adjust: initial; appearance: initial; color: initial; font: initial; font-palette: initial; font-synthesis: initial; position-area: initial; text-orientation: initial; text-rendering: initial; text-spacing-trim: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; anchor-name: initial; anchor-scope: initial; animation-composition: initial; animation: initial; app-region: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; baseline-source: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-decoration-break: initial; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; container: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: initial; dominant-baseline: initial; dynamic-range-limit: initial; empty-cells: initial; field-sizing: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphenate-character: initial; hyphenate-limit-chars: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; initial-letter: initial; inline-size: initial; inset-block: initial; inset-inline: initial; interpolate-size: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: initial; margin-inline: initial; marker: initial; mask-type: initial; math-shift: initial; math-style: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; object-view-box: initial; offset: initial; opacity: initial; order: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-block: initial; overflow-clip-margin: initial; overflow-inline: initial; overflow-wrap: initial; overflow: initial; overlay: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position-try: initial; position-visibility: initial; print-color-adjust: initial; quotes: initial; r: initial; reading-flow: initial; reading-order: initial; resize: initial; rotate: initial; ruby-align: initial; ruby-position: initial; rx: initial; ry: initial; scale: initial; scroll-behavior: initial; scroll-initial-target: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-marker-group: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scroll-timeline: initial; scrollbar-color: initial; scrollbar-gutter: initial; scrollbar-width: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-box: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; text-wrap: initial; timeline-scope: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; translate: initial; user-select: initial; vector-effect: initial; vertical-align: initial; view-timeline: initial; view-transition-class: initial; view-transition-name: initial; visibility: initial; border-spacing: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-user-drag: initial; white-space-collapse: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483647;"><div style="all: initial;"><template shadowrootmode="closed"><div></div></template></div></div></body></html>

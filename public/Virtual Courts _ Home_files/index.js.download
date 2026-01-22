@@ -1,0 +1,1958 @@
+
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $("#viewImage1").on('hidden',function(){
+  		$('#trafficImage').attr('src','');
+  });
+     $('#challan_no').on('keypress', function (event) {
+        var charCode = event.which;
+        // Allow only letters (A-Z, a-z) and numbers (0-9)
+        if (!(charCode >= 48 && charCode <= 57) &&  // 0-9
+            !(charCode >= 65 && charCode <= 90) &&  // A-Z
+            !(charCode >= 97 && charCode <= 122)&&
+		 charCode !== 47
+	) { // a-z
+            event.preventDefault(); // Block other characters
+        }
+    });
+
+    // Also handle copy-paste using input event
+    $('#challan_no').on('input', function () {
+        var sanitizedValue = $(this).val().replace(/[^a-zA-Z0-9/]/g, '');
+        $(this).val(sanitizedValue);
+    });
+        $('#cnr').on('keypress', function (event) {
+        var charCode = event.which;
+        // Allow only letters (A-Z, a-z) and numbers (0-9)
+        if (!(charCode >= 48 && charCode <= 57) &&  // 0-9
+            !(charCode >= 65 && charCode <= 90) &&  // A-Z
+            !(charCode >= 97 && charCode <= 122)) { // a-z
+            event.preventDefault(); // Block other characters
+        }
+    });
+
+    // Also handle copy-paste using input event
+    $('#cnr').on('input', function () {
+        var sanitizedValue = $(this).val().replace(/[^a-zA-Z0-9]/g, '');
+        $(this).val(sanitizedValue);
+    });
+        $('#vehicle_no').on('keypress', function (event) {
+        var charCode = event.which;
+        // Allow only letters (A-Z, a-z) and numbers (0-9)
+        if (!(charCode >= 48 && charCode <= 57) &&  // 0-9
+            !(charCode >= 65 && charCode <= 90) &&  // A-Z
+            !(charCode >= 97 && charCode <= 122)) { // a-z
+            event.preventDefault(); // Block other characters
+        }
+    });
+
+    // Also handle copy-paste using input event
+    $('#vehicle_no').on('input', function () {
+        var sanitizedValue = $(this).val().replace(/[^a-zA-Z0-9]/g, '');
+        $(this).val(sanitizedValue);
+    });
+    $('#mobile').on('keypress', function (event) {
+        var charCode = event.which;
+        // Allow only numbers (0-9)
+        if (!(charCode >= 48 && charCode <= 57) // 0-9
+            ) {
+            event.preventDefault(); // Block other characters
+        }
+    });
+
+    // Also handle copy-paste using input event
+    $('#mobile').on('input', function () {
+        var sanitizedValue = $(this).val().replace(/[^0-9]/g, '');
+        $(this).val(sanitizedValue);
+    });
+
+     $('#party').on('keypress', function (event) {
+        var charCode = event.which;
+        // Allow only letters (A-Z, a-z) and numbers (0-9)
+        if (!(charCode >= 48 && charCode <= 57) &&  // 0-9
+            !(charCode >= 65 && charCode <= 90) &&  // A-Z
+            !(charCode >= 97 && charCode <= 122)
+             (charCode !== 32)) { // a-z
+            event.preventDefault(); // Block other characters
+        }
+    });
+
+    // Also handle copy-paste using input event
+    $('#party').on('input', function () {
+        var sanitizedValue = $(this).val().replace(/[^a-zA-Z0-9 ]/g, '');
+        $(this).val(sanitizedValue);
+    });
+
+
+});
+
+function setStateCode(state_code)
+{
+	var postdata="x=setStateCode&state_code="+state_code;
+	var url="indexajax.php";
+	function callbackState(result)
+	{
+		if(result.status=='Y')
+		{
+			//window.location('index.php?state_code='+state_code);
+		}
+	}
+	ajaxCall(url,postdata,callbackState);
+	
+}
+
+function get_Reprint()
+{
+	//alert("megha");
+	//showOTP();
+		$('#displayreprint2').html('').hide();
+		$('#displayreprint').show();
+
+	
+}
+function clearCaptchaText()
+{
+div_id_name = "#div_captcha_mobile";
+
+if($("#mainMenuActive_mobile").hasClass("mainMenuActive") == true){
+			div_id_name = "#div_captcha_mobile";
+	}
+	if($("#mainMenuActive_cnr").hasClass("mainMenuActive") == true){
+			div_id_name = "#div_captcha_cnr";
+	}
+	if($("#mainMenuActive_party").hasClass("mainMenuActive") == true){
+			div_id_name = "#div_captcha_party";
+	}
+	if($("#mainMenuActive_police").hasClass("mainMenuActive") == true){
+			div_id_name = "#div_captcha_police";
+	}
+	var ty=document.getElementsByClassName('captchaClass');
+	ty[0].value='';
+	var dataString="";
+	var dataurl="captcha_ajax.php";
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   		
+	if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		$(div_id_name).html(result.div_captcha);		
+	}
+
+	//$('#div_captcha_cnr').html($('#div_captcha_mobile').clone(true,true));
+	//$('#div_captcha_party').html($('#div_captcha_mobile').clone(true,true));
+	//$('#div_captcha_police').html($('#div_captcha_mobile').clone(true,true));
+}
+
+
+function generateOTP_rp()
+{
+
+	//alert($('#otp_mobile').val());
+	var otp_mobile=$('#otp_mobile_rp').val();
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	
+
+	$('#generate_otp').html('Resend OTP');
+	var postdata="x=generate_otp_rp&fcino="+fcino+"&fparty_no="+fparty_no+"&otp_mobile="+otp_mobile;
+	//alert(postdata);
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+
+		if(result.status4=='success')
+		{
+		       if(result.msg3=='Wait for 2 min')
+			{
+				$("#otp_mobile_rp").attr("readonly", "readonly");
+				$("#generate_otp_rp").attr("disabled","disabled");
+				$("#regenerate_otp_msg_rp").show();
+				
+			       startCountdown(120,$('#xx_otp_rp'));
+			       setTimeout(RegenerateOtpTimeOut_rp,120000);
+			}
+			else
+			{
+				alert(result.msg4)
+			}
+		}
+		else if(result.status4=='fail')
+		{
+			alert(result.msg4)
+		}
+
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+function generateOTP_ce()
+{
+
+	
+	var otp_mobile=$('#otp_mobile_ce').val();
+	var otp_ce=$('#otp_ce').val();
+	if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	
+		
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	
+
+	$('#generate_otp').html('Resend OTP');
+	var postdata="x=generate_otp_ce&fcino="+fcino+"&fparty_no="+fparty_no+"&otp_mobile="+otp_mobile+"&otp_ce="+otp_ce;
+	//alert(postdata);
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+		//alert(result.msg1 + 'megha123');
+      /* if(result.status=='N')
+		{
+		   alert("aggi");
+		}*/
+		if(result.status4=='success')
+		{
+                       if(result.msg3=='Wait for 2 min')
+                        {
+                                $("#otp_mobile_ce").attr("readonly", "readonly");
+                                $("#generate_otp1").attr("disabled","disabled");
+                                $("#regenerate_otp_msg_ce").show();
+				startCountdown(120,$('#xx_otp_ce'));
+                               setTimeout(RegenerateOtpTimeOut_ce,120000);
+                        }
+			else
+			{
+				alert(result.msg4)
+				//window.location('index.php?state_code='+state_code);
+			}
+		}
+		else if(result.status4=='fail')
+		{
+			alert(result.msg4)
+			//window.location('index.php?state_code='+state_code);
+		}
+
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+function contest_generateOTP_ce()
+{
+
+	var otp_mobile=$('#contest_otp_mobile_ce').val();
+	var otp_ce=$('#contest_otp_ce').val();
+	if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	
+		
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	
+
+	$('#generate_otp').html('Resend OTP');
+	var postdata="x=generate_contested_otp_ce&fcino="+fcino+"&fparty_no="+fparty_no+"&otp_mobile="+otp_mobile+"&otp_ce="+otp_ce;
+	//alert(postdata);
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+		if(result.status4=='success')
+		{
+                       if(result.msg3=='Wait for 2 min')
+                        {
+                                $("#contest_otp_mobile_ce").attr("readonly", "readonly");
+                                $("#contest_generate_otp1").attr("disabled","disabled");
+                                $("#contest_regenerate_otp_msg_ce").show();
+				startCountdown(120,$('#xx_otp_contest'));
+                               setTimeout(RegenerateOtpTimeOut_contest_ce,120000);
+                        }
+                        else
+                        {
+                                alert(result.msg4)
+                                //window.location('index.php?state_code='+state_code);
+                        }
+		}
+		else if(result.status4=='fail')
+		{
+			alert(result.msg4)
+			//window.location('index.php?state_code='+state_code);
+		}
+
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+function generateOTP()
+{
+	//alert("maggi");
+	//alert($('#otp_mobile').val());
+	var otp_mobile=$('#otp_mobile').val();
+
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+
+
+	var accept_contest=$("input[name='accept_contest']:checked").val();
+	
+
+	var correctiontype='';
+
+	if(accept_contest=='I')
+	{     correctiontype=$('#correctiontype').val();
+		if($('#correctiontype').val()=="")
+		{
+				errorAlert('Please Select Correction Type ');
+				return false;
+		}
+		else
+		{
+			if($('#correctiontype').val()=='N' && (ffirst_name=='' || fmiddel_name=='' || flast_name==''))
+			{
+				errorAlert('Please Enter First, Middle and Last Name');
+				return false;
+			}
+		}
+
+	}
+	
+
+
+	if(accept_contest=='I' && (correctiontype=='O' || correctiontype=='M' ))
+	{
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	}
+
+	$('#generate_otp').html('Resend OTP');
+	var postdata="x=generate_otp&fcino="+fcino+"&fparty_no="+fparty_no+"&otp_mobile="+otp_mobile+"&accept_contest="+accept_contest+"&correctiontype="+correctiontype;
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+
+		if(result.status4=='success')
+		{
+			if(result.msg3=='Wait for 2 min')
+			{	
+				$('#xx_otp').show();
+				$("#otp_mobile").attr("readonly", "readonly");
+				$("#generate_otp").attr("disabled","disabled");
+				$("#regenerate_otp_msg").show();
+				startCountdown(120,$('#xx_otp'));
+			       setTimeout(RegenerateOtpTimeOut,120000);
+			}
+			else
+			{
+				successAlert(result.msg4)
+			}
+
+		}
+		else if(result.status4=='fail')
+		{
+			errorAlert(result.msg4)
+		}
+
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+
+function verify_pin_rp(flag){
+	if(flag=='V')
+	{
+	var otp_mobile = $("#otp_mobile_rp").val();
+	var otp = $("#otp_rp").val();
+	}
+	else
+	{
+		var otp_mobile = $("#otp_mobile").val();
+		var otp = $("#otp_rp").val();
+	}
+
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	var postdata="x=verify_otp_rp&otp_mobile="+otp_mobile+"&otp="+otp+"&fcino="+fcino+"&fparty_no="+fparty_no+"&flag="+flag;
+	//alert(postdata);
+	//return false;
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{ 
+		
+		if(result.status=='N' && result.data=='undefined')
+		{
+		
+                              if(result.msg3=='Wait for 2 min' && flag=='V')
+                                {
+                                        $('#verify_pin_msg_rp').show();
+                                        $("#otp_mobile_rp").attr("readonly", "readonly");
+                                        $("#otp_rp").attr("readonly", "readonly");
+                                        $("#generate_otp_rp").attr("disabled","disabled");
+                                         $("#accept_btn1").attr("disabled","disabled");
+					startCountdown(120,$('#vv_otp_rp'));
+                                       setTimeout(otpTimeOut_rp,120000);
+                                }
+				else
+				{
+					alert(result.msg1);
+				}
+                              if(result.msg3=='Wait for 2 min' && flag=='R')
+                                {
+					alert("in R");
+			                 $('#verify_pin_msg_rp').show();
+                                        $("#otp_rp").attr("readonly", "readonly");
+                                        $("#generate_otp_rp").attr("disabled","disabled");
+                                         $("#accept_btn1").attr("disabled","disabled");
+					startCountdown(120,$('#vv_otp_rp1'));
+                                       setTimeout(otpTimeOut_rp,120000);
+                                }
+                                else
+                                {
+                                        alert(result.msg1);
+                                }
+
+
+		}
+		else
+		{
+			$('#displayreprint2').show().html(result.data);
+			$('#displayreprint').hide();
+			if(flag=='V' && result.updatecivil=='Y')
+			{
+				$('#confirmDiv').html('');
+				$('#contest_info').html('');
+				$('#hideifverified1').html('').hide();
+				$('#hideifverified2').html('').hide();
+				$('#updatestatus'+fcino).html('<span style="background:#fff;float:right;color:green;font-weight:800;text-align:center;padding: 1px 2px;margin-top:0px;border:2px solid green;"> <i class="fa fa-check-circle"></i>&nbsp; Paid</span>');
+			}
+		}
+	}
+	ajaxCall(url,postdata,callbackOTP);
+}
+
+function verify_pin_ce(flag){
+	 //alert(flag);
+	if(flag=='E')
+	{
+			var otp_mobile = $("#otp_mobile_ce").val();
+			var otp = $("#otp_ce").val();
+			//alert(otp_mobile + "megha");
+			var cha_no=$('#fcha_no').html();
+			var feng_no=$('#feng_no').html();
+			var fcha_no_add=$('#fcha_no_add').val();
+			var feng_no_add=$('#feng_no_add').val();
+			cha_no=cha_no+fcha_no_add;
+			feng_no=feng_no+feng_no_add;
+			var payee_name=$('#payee_name').val();
+
+			//alert(feng_no);
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+
+	}
+	else if(flag=='CO')
+	{
+
+			var otp_mobile = $("#contest_otp_mobile_ce").val();
+			var otp = $("#contest_otp_ce").val();
+			//alert(otp_mobile + "megha");
+			var cha_no=$('#contest_fcha_no').html();
+			var feng_no=$('#contest_feng_no').html();
+			var fcha_no_add=$('#contest_fcha_no_add').val();
+			var feng_no_add=$('#contest_feng_no_add').val();
+			cha_no=cha_no+fcha_no_add;
+			feng_no=feng_no+feng_no_add;
+			var payee_name=$('#contest_payee_name').val();
+
+			//alert(feng_no);
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+
+	}
+
+	else
+	{
+		var otp_mobile = $("#otp_mobile").val();
+		var otp = $("#otp").val();
+	}
+
+
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	var postdata="x=verify_otp_rp&otp_mobile="+otp_mobile+"&otp="+otp+"&fcino="+fcino+"&fparty_no="+fparty_no+"&flag="+flag+"&cha_no="+cha_no+"&feng_no="+feng_no+"&payee_name="+payee_name+"&fcha_no_add="+fcha_no_add+"&feng_no_add="+feng_no_add;
+	
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{ 
+			//alert(result.status);
+		
+		
+			$('#displayreprint2').show().html(result.data);
+			$('#displayreprint').hide();
+		
+		if(flag == 'E' || flag == 'CO')
+			{
+			if(result.status=='N')
+			{
+	                       if(result.msg3=='Wait for 2 min' && flag=='E')
+        	                {
+	                                $('#verify_pin_msg_ce').show();
+	                                $("#otp_mobile_ce").attr("readonly", "readonly");
+					$("#otp_ce").attr("readonly", "readonly");
+	                                $("#generate_otp1").attr("disabled","disabled");
+					 $("#generate_otp_ce").attr("disabled","disabled");
+					startCountdown(120,$('#vv_otp_ce'));
+	                               setTimeout(otpTimeOut_ce,120000);
+	                        }
+                              if(result.msg3=='Wait for 2 min' && flag=='CO')
+                                {
+                                        $('#contest_verify_pin_msg_ce').show();
+                                        $("#contest_otp_mobile_ce").attr("readonly", "readonly");
+                                        $("#contest_otp_ce").attr("readonly", "readonly");
+                                        $("#contest_generate_otp1").attr("disabled","disabled");
+                                         $("#contest_generate_otp_ce").attr("disabled","disabled");
+					startCountdown(120,$('#vv_otp_contest'));
+                                       setTimeout(otpTimeOut_contest_ce,120000);
+                                }
+
+
+	
+				$('#showagree').hide();
+				$('#showsummons').hide();
+				$('#showsummons2').hide();
+
+			}
+			else
+			{
+				$('#showagree').show();
+				$('#showsummons').show();
+				$('#showsummons2').show();
+				$('#hidepayfine').hide();
+			}
+			}
+		     else
+			{
+				 $('#showagree').hide();
+				 $('#showsummons').hide();
+				  $('#showsummons2').hide();
+				  $('#hidepayfine').show();
+			}
+		if(flag=='V' && result.updatecivil=='Y')
+		{
+			$('#confirmDiv').html('');
+			$('#contest_confirmDiv').html('');
+			
+			$('#contest_info').html('');
+			$('#hideifverified1').html('').hide();
+			$('#hideifverified2').html('').hide();
+			$('#updatestatus'+fcino).html('<span style="background:#fff;float:right;color:green;font-weight:800;text-align:center;padding: 1px 2px;margin-top:0px;border:2px solid green;"> <i class="fa fa-check-circle"></i>&nbsp; Paid</span>');
+		}
+	}
+	ajaxCall(url,postdata,callbackOTP);
+}
+
+function verify_pin() {
+  //alert("megha");
+	var otp_mobile = $("#otp_mobile").val();
+	var otp = $("#otp").val();
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	var ffirst_name= $("#ffirst_name").val();
+	var fmiddel_name= $("#fmiddel_name").val();
+	var flast_name= $("#flast_name").val();
+	var contest_remark=$.trim($("#contest_remark").val());
+	//alert(contest_remark);
+	var accept_contest=$("input[name='accept_contest']:checked").val();
+	
+
+	//alert(accept_contest);
+
+	var correctiontype='';
+	
+
+	if(accept_contest=='I')
+	     correctiontype=$('#correctiontype').val();
+	
+
+
+	//if(accept_contest!='C' && accept_contest!='P')
+	if(accept_contest=='I' && (correctiontype=='O' || correctiontype=='M' ))
+	{
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+
+	}
+	if(otp=='' || otp==undefined)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+	else if(otp.length!=6)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+
+	$('#contest_remark').val('');
+	$("#contest_remark_div").hide();
+
+/*
+	if(accept_contest=='N' && (ffirst_name=='' || fmiddel_name=='' || flast_name==''))
+	{
+		errorAlert('Please Enter First, Middle and Last Name');
+		return false;
+	}
++"&fmiddel_name="+fmiddel_name+"&flast_name="+flast_name +"&ffirst_name="+ffirst_name
+
++'&contest_remark='+contest_remark
+	*/
+	
+
+
+	/*
+	var a=confirm("Are you sure to Proceed...");
+		//successAlert(a);
+	if(!a)
+		return false;
+	*/
+	var postdata="x=verify_otp&otp_mobile="+otp_mobile+"&otp="+otp+"&fcino="+fcino+"&fparty_no="+fparty_no+"&accept_contest="+accept_contest+"&correctiontype="+correctiontype;
+
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+
+		if(result.status=='Y')
+		{ 
+			if(result.msg2=='OTP Verified')
+			{
+				$('#generate_otp').hide();
+				$('#vv_otp').hide();
+			}
+			if(result.msg2!='OTP Verified')
+                        {
+	                        $('#showagree').hide();
+        	                $('#showsummons').hide();
+                	        $('#showsummons2').hide();
+                        	$('#hidepayfine').hide();	
+				return false;
+			}
+			
+			 if(accept_contest == 'C' || accept_contest == 'P')
+			{
+				
+				$('#showagree').show();
+				$('#showsummons').show();
+				$('#showsummons2').show();
+				$('#hidepayfine').hide();
+			}
+		     else
+			{
+				 $('#showagree').hide();
+				 $('#showsummons').hide();
+				  $('#showsummons2').hide();
+				  $('#hidepayfine').show();
+			}
+
+			if(accept_contest=='C')
+			{  
+				$("#contest_remark_div").show();
+				$('#contest_remark').val('');
+				$('#understood_text').html('I have understood the contents of Special Summons. I wish to contest the case.');
+			}
+			else
+			{
+				$("#contest_remark_div").hide();
+				$('#understood_text').html('I have understood the contents of Special Summons. I wish to pay the fine mentioned therein');
+			}
+
+			if(accept_contest!='P')
+			{   
+				$('#contest_remark').val('');
+				$("#contest_remark_div").show();
+			}
+
+			
+		}
+
+		else
+		{
+			if(result.msg3=='Wait for 2 min')
+			{
+				$('#xx_otp').show();
+		                $('#verifypin').attr("disabled","disabled");
+				$('#verify_pin_msg').show();
+		                $("#otp_mobile").attr("readonly", "readonly");
+				$("#generate_otp").attr("disabled","disabled");
+                                startCountdown(120,$('#vv_otp'));
+		                setTimeout(otpTimeOut,120000);
+			}
+                        
+
+			$('#showagree').hide();
+			$('#showsummons').hide();
+			$('#showsummons2').hide();
+			$('#hidepayfine').hide();
+			
+		}
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+function startCountdown(duration,display) {
+    var start = Date.now(),diff,minutes,seconds;
+    var div= $('#countdowndiv', display);
+    function timer() {
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+	
+	div.find('#countdown').text(minutes + ":" + seconds);
+	
+        if (diff < 0) {
+          	clearInterval(inter);
+		div.hide();
+        }
+    };
+    timer();
+    var inter=setInterval(timer, 1000);
+    div.show();
+}
+
+
+
+
+function RegenerateOtpTimeOut()
+{
+               $('#xx_otp').show();
+                $("#otp_mobile").attr("readonly", "readonly");
+                $("#generate_otp").removeAttr("disabled");
+		$("#regenerate_otp_msg").hide();
+        var postdata="x=unsetcount";
+        var url="indexajax.php";
+        function callbackOTP(result)
+        {
+        }
+        ajaxCall(url,postdata,callbackOTP);
+}
+function RegenerateOtpTimeOut_ce()
+{
+               $("#otp_mobile_ce").removeAttr("readonly");
+               $("#generate_otp1").removeAttr("disabled");
+               $("#regenerate_otp_msg_ce").hide();
+       var postdata="x=unsetcount";
+        var url="indexajax.php";
+        function callbackOTP(result)
+        {
+        }
+        ajaxCall(url,postdata,callbackOTP);
+
+}
+
+function RegenerateOtpTimeOut_rp()
+{
+          $("#generate_otp_rp").removeAttr("disabled");
+	  $("#regenerate_otp_msg_rp").hide();
+       var postdata="x=unsetcount";
+        var url="indexajax.php";
+        function callbackOTP(result)
+        {
+        }
+        ajaxCall(url,postdata,callbackOTP);
+
+}
+
+
+function RegenerateOtpTimeOut_contest_ce()
+{
+               $("#contest_otp_mobile_ce").removeAttr("readonly");
+               $("#contest_generate_otp1").removeAttr("disabled");
+               $("#contest_regenerate_otp_msg_ce").hide();
+       var postdata="x=unsetcount";
+        var url="indexajax.php";
+        function callbackOTP(result)
+        {
+        }
+        ajaxCall(url,postdata,callbackOTP);
+
+}
+
+
+function otpTimeOut()
+{
+               $('#xx_otp').show();
+                $('#verifypin').removeAttr("disabled");
+		$('#verify_pin_msg').hide();
+                $("#otp_mobile").attr("readonly", "readonly");
+                $("#generate_otp").removeAttr("disabled");
+}
+function otpTimeOut_ce()
+{
+               $('#verify_pin_msg_ce').hide();
+               $("#otp_mobile_ce").removeAttr("readonly");
+		$("#otp_ce").removeAttr("readonly");
+		$("#otp_ce").val('');
+               $("#generate_otp1").removeAttr("disabled");
+
+                $("#generate_otp_ce").removeAttr("disabled");
+}
+
+function otpTimeOut_contest_ce()
+{
+               $('#contest_verify_pin_msg_ce').hide();
+               $("#contest_otp_mobile_ce").removeAttr("readonly");
+                $("#contest_otp_ce").removeAttr("readonly");
+                $("#contest_otp_ce").val('');
+               $("#contest_generate_otp1").removeAttr("disabled");
+
+                $("#contest_generate_otp_ce").removeAttr("disabled");
+}
+function otpTimeOut_rp()
+{
+
+	 $('#verify_pin_msg_rp').hide();
+         $("#otp_rp").removeAttr("readonly");
+         $("#generate_otp_rp").removeAttr("disabled");
+         $("#accept_btn1").removeAttr("disabled");
+}
+
+
+function payfine() {
+  //alert("megha");
+	var otp_mobile = $("#otp_mobile").val();
+	var otp = $("#otp").val();
+	
+
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	var fname= $("#fname").val();
+	var contest_remark=$.trim($("#contest_remark").val());
+	//alert(contest_remark);
+	
+	var ffirst_name= $("#ffirst_name").val();
+	var fmiddel_name= $("#fmiddel_name").val();
+	var flast_name= $("#flast_name").val();
+	var payee_name= $("#payee_name").val();
+	var accept_contest=$("input[name='accept_contest']:checked").val();
+ //alert(accept_contest);
+ //alert($("#payee_name").val());
+
+        if(accept_contest=='C')
+        {
+                if(!confirm('Once you contest case, you can not pay fine and case will be transfered to regular court. \nDo You want to Continue?'))
+                {
+                        return false;
+                }
+        }
+
+	if(accept_contest=='E')
+	{
+		if($("#payee_name").val()=='' && !$('#payee').is(':checked'))
+		{
+		 alert("Please Enter Payee Name");
+		 return false;
+		}
+		var otp_mobile = $("#otp_mobile_ce").val();
+		var otp = $("#otp_ce").val();
+			//var cha_no=$('#fcha_no').html();
+			//var feng_no=$('#feng_no').html();
+			var payee=$('#payee').val();
+			var fcha_no_add=$('#fcha_no_add').val();
+			var feng_no_add=$('#feng_no_add').val();
+			var payee_name=$('#payee_name').val();
+			//cha_no=cha_no+fcha_no_add;
+			//feng_no=feng_no+feng_no_add;
+	}
+
+	if(accept_contest=='CO')
+	{
+		if($("#contest_payee_name").val()=='' && !$('#contest_payee').is(':checked'))
+		{
+		 errorAlert("Please Enter Offender Name");
+		 return false;
+		}
+
+	
+			var otp_mobile = $("#contest_otp_mobile_ce").val();
+			var otp = $("#contest_otp_ce").val();
+			var contest_remark_co=$.trim($("#contest_remark_co").val());
+
+			if($("#contest_remark_co").val()=='')
+			{
+				errorAlert("Remark Is mandatory");
+				return false;
+			}
+
+			var payee=$('#contest_payee').val();
+			//var cha_no=$('#fcha_no').html();
+			//var feng_no=$('#feng_no').html();
+			var fcha_no_add=$('#contest_fcha_no_add').val();
+			var feng_no_add=$('#contest_feng_no_add').val();
+			var payee_name=$('#contest_payee_name').val();
+			//cha_no=cha_no+fcha_no_add;
+			//feng_no=feng_no+feng_no_add;
+	}
+
+
+
+
+
+
+	var fexisting_owner_mobile = $("#fexisting_owner_mobile").val();
+
+
+
+	var correctiontype='';
+
+	if(accept_contest=='I')
+	{
+		correctiontype=$('#correctiontype').val();
+		if(correctiontype=="")
+		{
+				errorAlert('Please Select Correction Type ');
+				return false;
+		}
+		else
+		{
+			if(correctiontype=='N' && (ffirst_name=='' || fmiddel_name=='' || flast_name==''))
+			{
+				errorAlert('Please Enter First, Middle and Last Name');
+				return false;
+			}
+		}
+
+	}
+
+	//if(accept_contest!='C' && accept_contest!='P' )
+	if(accept_contest=='I' && (correctiontype=='O' || correctiontype=='M' ))
+	{
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	}
+
+	if(correctiontype=='K' )
+	{
+		if(fexisting_owner_mobile=='' || fexisting_owner_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(fexisting_owner_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	}
+
+	if(otp=='' || otp==undefined)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+	else if(otp.length!=6)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+
+	
+
+
+	if(accept_contest=='C' && $('#contest_remark').val().trim()=='')
+	{
+		errorAlert('Please Enter Contest Remark');
+		return false;
+	}
+
+	
+
+	if($('#total_proposed_fine').val()>=2000 && $('#acceptandpay').is(':checked'))
+	{
+		var checkfine=confirm('As per request, payment of fine over and above 2000/- through Debit Card is restricted. So do not use Debit Card option for this transaction');
+		if(!checkfine )
+		return false;
+	
+	}
+
+	var a=confirm("Are you sure to Proceed...");
+	$('#accept_btn').attr('disabled','disabled');
+		//successAlert(a);
+	if(!a )
+		return false;
+	var postdata="x=payfine&otp_mobile="+otp_mobile+"&otp="+otp+"&fcino="+fcino+"&fparty_no="+fparty_no+"&accept_contest="+accept_contest+"&ffirst_name="+ffirst_name+'&contest_remark='+contest_remark+"&fmiddel_name="+fmiddel_name+"&flast_name="+flast_name+"&fexisting_owner_mobile="+fexisting_owner_mobile+"&correctiontype="+correctiontype+"&feng_no_add="+feng_no_add+"&payee_name="+payee_name+"&fcha_no_add="+fcha_no_add+"&payee="+payee+"&contest_remark_co="+contest_remark_co;
+	//alert(postdata);
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+		if(result.status=='Y')
+		{
+			//successAlert(result.status);
+			$('#viewDetailsDiv').hide().html('');
+			//$('.resultDiv').hide();
+			//$('#viewDetailsDiv').hide();
+			$('#mobile').val('');
+			$('#cnr').val('');
+			$('#fpolice_st_code').val('');
+			$('#ffir_no').val('');
+			$('#ffir_year').val('');
+	
+			//$('#payment').html(result.msg)
+			//$('#payment').modal('show');
+			//alert(result.msg)
+			//window.location('index.php?state_code='+state_code);
+		}
+		else
+		{
+			//alert(result.msg);
+		}
+	}
+	ajaxCall(url,postdata,callbackOTP,'Y');
+	
+}
+
+function verify_pin_old() {
+  //alert("megha");
+	var otp_mobile = $("#otp_mobile").val();
+	var otp = $("#otp").val();
+	var fcino = $("#fcino").val();
+	var fparty_no= $("#fparty_no").val();
+	var fname= $("#fname").val();
+	var contest_remark=$.trim($("#contest_remark").val());
+	//alert(contest_remark);
+	var accept_contest='';
+	if($('#contestandsubmit').is(':checked'))
+		accept_contest='C';
+	else if($('#acceptandpay').is(':checked'))
+		accept_contest='P';
+	else if($('#incorrectsubmit').is(':checked'))
+		accept_contest='I';
+
+	//alert(accept_contest);
+
+	if(accept_contest=='I')
+	{
+		if(otp_mobile=='' || otp_mobile==undefined)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+		else if(otp_mobile.length!=10)
+		{
+			errorAlert('Please Enter 10 digit mobile number');
+			return false;
+		}
+	}
+	if(otp=='' || otp==undefined)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+	else if(otp.length!=6)
+	{
+		errorAlert('Please Enter 6 digit OTP number');
+		return false;
+	}
+	if(accept_contest=='I' && fname=='')
+	{
+		errorAlert('Please Enter Full Name');
+		return false;
+	}
+
+	if(accept_contest=='C' && $('#contest_remark').val().trim()=='')
+	{
+		errorAlert('Please Enter Contest Remark');
+		return false;
+	}
+	var a=confirm("Are you sure to Proceed...");
+		//successAlert(a);
+	if(!a)
+		return false;
+	var postdata="x=verify_otp&otp_mobile="+otp_mobile+"&otp="+otp+"&fcino="+fcino+"&fparty_no="+fparty_no+"&accept_contest="+accept_contest+"&fname="+fname+'&contest_remark='+contest_remark;
+	//alert(postdata);
+	var url="indexajax.php";
+	function callbackOTP(result)
+	{
+		if(result.status=='Y')
+		{
+			//successAlert(result.status);
+			$('#viewDetailsDiv').hide().html('');
+			//$('.resultDiv').hide();
+			//$('#viewDetailsDiv').hide();
+			$('#mobile').val('');
+			$('#cnr').val('');
+			$('#fpolice_st_code').val('');
+			$('#ffir_no').val('');
+			$('#ffir_year').val('');
+	
+			//$('#payment').html(result.msg)
+			//$('#payment').modal('show');
+			//alert(result.msg)
+			//window.location('index.php?state_code='+state_code);
+		}
+		else
+		{
+			//alert(result.msg);
+		}
+	}
+	ajaxCall(url,postdata,callbackOTP);
+	
+}
+
+	$(document).ready(function(){
+			//alert();
+			//$("#contest_remark_div").css("display", "none");
+			$("#contest_remark_div").hide();
+			$("#viewDetailsDiv").hide();
+			$("#confirmDiv").hide();
+			
+		   $("#acceptandpay").click(function () {
+            if ($(this).is(":checked")) {
+                $("#confirmDiv").show();
+            } else {
+                $("#confirmDiv").hide();
+            }
+        });
+
+		   $("#contestandsubmit").click(function () {
+            if ($(this).is(":checked")) {
+                $("#confirmDiv").show();
+            } else {
+                $("#confirmDiv").hide();
+            }
+        });
+
+		   $('a.viewDetlink').click(function(e) {
+			 
+		   		$(".resultDiv").hide();
+		   		$("#viewDetailsDiv").show(); 
+			    e.preventDefault();
+			});
+			
+		});
+
+		
+		/*$(document).ready(function(){
+			$("#servicesForm").hide();
+
+		  $("#payFineBTN").click(function(){
+		    $("#demo").hide();about 
+		    $("#about").hide();
+		    $("#services").hide();
+		    $("#servicesForm").show();
+		  });
+		});*/
+
+function submitMobile()
+{
+	if($('#fstate_code').val()=='')
+	{
+		errorAlert('Please select state from top bar');
+		$('#fstate_code').focus();
+		return false;
+	}
+	/*if($('#fcaptcha_code').val()=='')
+	{
+		errorAlert('Please enter Captcha');
+		$('#fcaptcha_code').focus();
+		return false;
+	}*/
+
+
+	/*if($('#mobile').val()=='')
+	{
+		errorAlert('Please Enter Mobile No.');
+		$('#mobile').focus();
+		return false;
+	}
+
+	if($('#mobile').val().length <10 || $('#mobile').val().length >10)
+	{
+		errorAlert("Enter 10 Digit Mobile No.");
+		$('#mobile').val('')
+		$('#mobile').focus();
+		return false;
+	}
+
+	if($('#mobile').val()!="")
+	{
+		if (!$('#mobile').val().match(/^[0-9]+$/) && $('#mobile').val()!="")
+		{
+		
+			errorAlert("Enter only Numbers in Mobile Number");
+			$('#mobile').val('')
+			$('#mobile').focus();
+
+			return false;
+			
+		}
+	}
+*/
+
+	var fcaptcha_code=$('#fcaptcha_code_mobile').val()
+       if(fcaptcha_code.length !=6)
+        {
+                errorAlert('invalid captcha code length');
+                $('#fcaptcha_code_mobile').focus();
+                return false;
+        } 
+	//var dataString="x=mobilesearch&mobile="+$('#mobile').val()+'&fcaptcha_code='+fcaptcha_code;
+	var dataString="mobile="+$('#mobile').val()+'&fcaptcha_code='+fcaptcha_code;
+	var dataurl="admin/mobilesearchajax.php";
+
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   $('#searchresult').show();
+		$('#secondpagenew').hide();
+		$('.resultDiv').show();
+		$('#secondpagenew2').show().html(result.historytable);
+		$('#viewDetailsDiv').hide()
+			//alert(result.div_captcha)
+		if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		{
+			//alert(result.div_captcha);
+			//alert(result.invalid);
+			if(result.invalid!='')
+			{
+				errorAlert(result.invalid);
+				$('#mobile').val('');
+				$('#div_captcha_mobile').html(result.div_captcha);		
+				$('.captchaClass').val('');
+			}
+			
+			else
+			{
+				$('#div_captcha_mobile').html(result.div_captcha);		
+				$('.captchaClass').val('');
+			}
+			
+		}
+
+	}
+
+
+}
+function open_image(obj){
+//alert("megha");
+	$('#trafficImage').attr('src',obj);
+	setTimeout(function(){$("#viewImage1").modal({
+    
+      show: true //Display loader!
+    })},500);
+	
+	
+}
+function view(cino,party_no,efilno,archive_flag=0)
+{        
+	var dataString="cino="+cino+"&party_no="+party_no+"&efilno="+efilno+"&archive_flag="+archive_flag;
+
+	var dataurl="admin/case_history_partywise.php";
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   
+		$('#viewDetailsDiv').show().html(result.historytable);
+		$('#displayagree').html(result.viewagree);
+		$('#displaysummons').html(result.viewsummons);
+		//alert(result.viewsummons);
+		
+		$('#secondpagenew2').hide();
+		$("#confirmDiv").hide();
+
+		
+		$(".chosen").chosen({background: true});
+		$('#correctiontype_chosen .chosen-single').css('background','rgb(229, 247, 254)');
+
+	}
+}
+function unlink_file(cino,party_no)
+{
+	var dataString="x=unlink_file&cino="+cino+"&party_no="+party_no;
+
+	var dataurl="indexajax.php";
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{
+
+	}
+}
+function back()
+{
+		$('#secondpagenew2').show();
+		$('#viewDetailsDiv').hide()
+		$('#searchresult').show();
+
+}
+
+function setval(str)
+{
+	$('#dropdownMenuButton').html($('#'+str).html());
+	$('#correctiontype').val(str);
+
+		if(str=='N' || str=='K' || str=='O')
+		$('#showhidecorrection2').show();
+		else
+		$('#showhidecorrection2').hide();
+
+		if(str=='K')
+			$('#existing_owner_mobile').show();
+		else
+			$('#existing_owner_mobile').hide();
+   
+    	if(str=='N' || str=='K' || str=='A')
+		{
+		$('#otp_mobile').val($('#otp_mobile1').val());
+		$("#otp_mobile").attr("readonly", "readonly");
+		}
+		else
+		{
+			$('#otp_mobile').val('');
+			$("#otp_mobile").attr("readonly",false);
+		}
+}
+function hide_payee()
+{
+
+	if($('#payee').is(':checked'))
+		{
+			//alert("megha");
+
+			//$('#showhide_payee_or').hide();
+			$('#showhide_payee_name').hide();
+			$('#payee_name').val('');
+			
+		}
+		else
+		{
+			
+			//$('#showhide_payee_or').show();
+			$('#showhide_payee_name').show();
+			
+		}
+		if($('#contest_payee').is(':checked'))
+		{
+			//alert("megha");
+
+			//$('#showhide_payee_or').hide();
+			$('#contest_showhide_payee_name').hide();
+			$('#contestpayee_name').val('');
+			
+		}
+		else
+		{
+			
+			//$('#showhide_payee_or').show();
+			$('#contest_showhide_payee_name').show();
+			
+		}
+
+}
+
+function showOTP(str)
+{
+	
+		
+	//alert('showOTP');
+	var correctiontype='';
+//alert(str);
+	if(str=='I')
+	{
+		correctiontype=$('#correctiontype').val();
+	}
+	if($('#accept_contest').val()==$("input[name='accept_contest']:checked").val())
+	{  
+		if(str=='I')
+		$('#incorrectsubmit').prop('checked',false);
+	   else if(str=='P')
+		   $('#acceptandpay').prop('checked',false);
+	   else
+		   $('#contestandsubmit').prop('checked',false);
+		
+		$("#confirmDiv").hide();
+		$('#contest_info').hide();
+
+		$('#accept_contest').val('');
+	}
+	else
+	{
+		$('#accept_contest').val($("input[name='accept_contest']:checked").val());
+
+		$('#contest_info').show();
+
+	$('#otp').val('');
+	$('#showagree').hide();
+
+	$('#showsummons').hide();
+	$('#showsummons2').hide();
+	$('#understood_summons').prop('checked',false);
+
+	var mobile_no=$('#otp_mobile1').val();
+	$("#confirmDiv").show();
+	$('.incorrect_div').hide();
+	$('#contest_info').addClass('d-none');
+
+	/*if($('#acceptandpay').is(':checked'))
+		accept_contest='C';
+	else if($('#contestandsubmit').is(':checked'))
+		accept_contest='P';
+	else if($('#incorrectsubmit').is(':checked'))
+		accept_contest='I';*/
+	$("#contest_remark_div").hide();
+	//$("#contest_remark_div").css("display", "none");
+	$('#accept_btn').html('');
+	//console.log('str==>'+str);
+	$('#hidepayfine').hide();
+	$('#contest_remark_div').hide();
+	$('#contest_remark').val('');
+
+		$('#showhidecorrection').hide();
+	
+	 if(str=='P' || str=='C')
+        {
+                var dataString="x=unset_otp";
+                var dataurl="indexajax.php";
+                ajaxCall(dataurl,dataString,fun_callback);
+                function fun_callback(result)
+                {
+                        if(result.status=='Y')
+                        {
+				//do nothing
+                        }
+                }
+
+        }
+
+
+	if(str=='P')
+	{
+	//alert(str);	
+		$('.contest_incorrect_div').hide();
+		$('#xx_otp').show();
+		$('#vv_otp').show();
+		$('#accept_btn').html('Accept & Pay');
+		$('#otp_mobile').val(mobile_no);
+		$("#otp_mobile").attr("readonly", "readonly");
+		//$('#xx_otp').$("#generate_otp").attr("disabled","disabled");
+		//$('#vv_otp').$("#generate_otp").attr("disabled","disabled");
+	}
+	else if(str=='C')
+	{
+		$('.contest_incorrect_div').hide();
+		$('#xx_otp').show();
+		$('#vv_otp').show();
+		$('#accept_btn').html('Submit');
+		
+		//$("#contest_remark_div").css("display", "block");
+
+		$('#otp_mobile').val(mobile_no);
+		$('#contest_info').removeClass('d-none');
+		$("#otp_mobile").attr("readonly", "readonly");
+	}
+/////////////////////////////////////////////////////      for CE        ///////////////////////////////////////////
+	else if(str=='E')
+	{	
+	
+		$('#confirmDiv').hide();
+
+		$('.incorrect_div').show();
+		$('.contest_incorrect_div').hide();
+		//$("#cha_eng").css("display", "block");
+		$("#cha_eng").show();
+		$('#accept_btn').html('Accept & Pay');
+		//alert($("#cha_eng").show());
+		$('#showhidecorrection').hide();
+		$('#showhidecorrection2').hide();
+		$('#gen_otp').hide();
+		$('#ver_otp').hide();
+		$('#contest_remark_div').hide();
+		$('#xx_otp').hide();
+		$('#vv_otp').hide();
+
+				$("#otp_mobile").attr("readonly",false);
+		//$("#contest_remark_div").css("display", "block");
+		var fcino=$('#fcino').val();
+		//alert(fcino);
+		var dataString="x=vehicle_correction&cino="+fcino;
+		var dataurl="indexajax.php";
+		ajaxCall(dataurl,dataString,fun_callback);
+		function fun_callback(result)
+		{   	
+			if(result.status=='Y')
+			{
+				
+				$('#confirmDiv').show();
+				
+				data=result.data;
+				var arr = data.split('~');
+				//alert(arr[0]);
+				//$('#veh_no').html(arr[0]);
+				$('#owner_name').html(arr[0]);
+				$('#fcha_no').html(arr[1]);
+				$('#feng_no').html(arr[2]);
+			}
+			
+			
+				
+		}
+	}
+/////////////////////////////////////////////////////      for CE   end     ///////////////////////////////////////////
+
+/////////////////////////////////////////////////////      for CO        ///////////////////////////////////////////
+else if(str=='CO')
+	{	
+	//alert("meghaa");
+		$('#confirmDiv').hide();
+
+		$('.contest_incorrect_div').show();
+		//$("#cha_eng").css("display", "block");
+
+		$("#contest_cha_eng").show();
+		//alert($("#contest_cha_eng").show());
+		$('#accept_btn').html('Submit');
+		
+		$('#showhidecorrection').hide();
+		$('#showhidecorrection2').hide();
+		$('#gen_otp').hide();
+		$('#ver_otp').hide();
+		$('#contest_remark_div').hide();
+		$('#xx_otp').hide();
+		$('#vv_otp').hide();
+
+		$("#otp_mobile").attr("readonly",false);
+		//$("#contest_remark_div").css("display", "block");
+		var fcino=$('#fcino').val();
+		var contest_remark_co=$('#contest_remark_co');
+		//alert(contest_remark_co);
+		var dataString="x=vehicle_correction&cino="+fcino;
+		var dataurl="indexajax.php";
+		ajaxCall(dataurl,dataString,fun_callback);
+		function fun_callback(result)
+		{   
+			if(result.status=='Y')
+			{
+				
+				$('#confirmDiv').show();	
+				data=result.data;
+				var arr = data.split('~');
+				//alert(arr[0]);
+				//$('#contest_veh_no').html(arr[0]);
+				$('#contest_owner_name').html(arr[0]);
+				$('#fcha_no1').html(arr[1]);
+				$('#feng_no1').html(arr[2]);
+			}
+			
+				
+		}
+	}
+/////////////////////////////////////////////////////      for CO   end     ///////////////////////////////////////////
+
+	else
+	{ 
+	
+		$('#showhidecorrection').show();
+		$('.incorrect_div').show();
+	
+
+		$('#accept_btn').html('Submit');
+		$('#showagree').hide();
+		$('#showsummons').hide();
+		$('#showsummons2').hide();
+		if(accept_contest=='I' && (correctiontype=='O' || correctiontype=='M' ))
+		{
+            $('#otp_mobile').removeAttr('readonly');
+			$('#otp_mobile').val('');
+			
+
+		}
+		else
+		{
+			$('#otp_mobile').val(mobile_no);
+		    $("#otp_mobile").attr("readonly", "readonly");
+		}
+	}
+	}	
+}
+
+
+function showsubmit()
+{   
+	 if($('#understood_summons').is(':checked') && $('#understood_agree').is(':checked'))
+			$('#hidepayfine').show();
+		else
+			$('#hidepayfine').hide();
+}
+
+function submitCNR()
+{
+	if($('#cnr').val()=='')
+	{
+		errorAlert('Please Enter CNR No.');
+		$('#cnr').focus();
+		return false;
+	}
+
+	if($('#cnr').val().length >18)
+	{
+		errorAlert("Enter 18 OR 16 Digit CNR No.");
+		$('#cnr').val('')
+		$('#cnr').focus();
+		return false;
+	}
+
+	if($('#cnr').val()!="")
+	{
+		if (!$('#cnr').val().match(/^[a-zA-Z0-9]+$/) && $('#cnr').val()!="")
+		{
+		
+			errorAlert("Enter only Alphabets and Numbers in CNR Number");
+			$('#cnr').val('')
+			$('#cnr').focus();
+			return false;
+			
+		}
+	}
+
+    var fcaptcha_code=$('#fcaptcha_code_cnr').val()    
+	if(fcaptcha_code.length !=6)
+        {
+                errorAlert('invalid captcha code length');
+                $('#fcaptcha_code_cnr').focus();
+                return false;
+        }
+	var dataString="cino="+$('#cnr').val()+'&fcaptcha_code='+fcaptcha_code;
+	var dataurl="admin/mobilesearchajax.php";
+
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   
+		$('#searchresult').show();
+		$('#secondpagenew').hide();
+		$('.resultDiv').show();
+		$('#secondpagenew2').show().html(result.historytable);
+		$('#back').hide();
+		$('#viewDetailsDiv').hide()
+			//alert(result.div_captcha)
+		if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		{	
+			if(result.invalid!='')
+			{
+				errorAlert(result.invalid);
+				$('#div_captcha_cnr').html(result.div_captcha);
+				$('#cnr').val('')
+				$('.captchaClass').val('');
+			}
+			else
+			{
+				$('#div_captcha_cnr').html(result.div_captcha);
+				$('.captchaClass').val('');
+			}
+		}
+	}
+}
+
+function showmainpage()
+{
+	if($('#fstate_code').val()=='')
+	{
+		errorAlert('Please Select State');
+		$('#fstate_code').focus();
+		return false;
+	}		
+	window.location = 'main.php';
+}
+
+function navigateme(myclass)
+{  
+	//alert('anil')
+	$('#challan_no').val('');
+	$('#vehicle_no').val('');
+	if($('#fstate_code').val()=='')
+	{
+		errorAlert('Please Select State');
+		$('#fstate_code').focus();
+		return false;
+	}
+	var captchacode=$('#div_captcha_mobile').html();
+	
+	if(myclass!='no')
+		$('#'+myclass).click();
+	//errorAlert(captchacode);
+	$('#mobile_captcha').html('');
+	$('#cnr_captcha').html('');
+	$('#party_captcha').html('');
+	$('#police_captcha').html('');
+	$('.rounded').removeClass('mainMenuActive');
+	var div_id_name = '#div_captcha_mobile';
+	if(myclass=='nav-sbMobileNumber-tab')
+	{
+		//$('#mobile_captcha').html(captchacode);
+		$('.mainContentTitle').html('Search by Mobile Number');
+		$('#mainMenuActive_mobile').addClass('mainMenuActive');
+		div_id_name = '#div_captcha_mobile';
+	}
+	else if(myclass=='nav-sbCNR-tab')
+	{
+		$('#div_captcha_cnr').html(captchacode);
+		$('.mainContentTitle').html('Search by CNR Number');
+		$('#mainMenuActive_cnr').addClass('mainMenuActive');
+
+		div_id_name = '#div_captcha_cnr';
+	}
+	else if(myclass=='nav-sbPartyName-tab')
+	{
+		$('#div_captcha_party').html(captchacode);
+		$('.mainContentTitle').html('Search by Party Name');
+		$('#mainMenuActive_party').addClass('mainMenuActive');
+		$('#fcaptcha_code_party').val('');
+
+		div_id_name = '#div_captcha_party';
+	}
+	else if(myclass=='nav-sbPoliceStation-tab')
+	{
+		$('#div_captcha_police').html(captchacode);
+		$('.mainContentTitle').html('Search by Challan/Vehicle No.');
+		$('#mainMenuActive_police').addClass('mainMenuActive');
+
+		div_id_name = '#div_captcha_police';
+	}
+
+	var dataString="";
+	var dataurl="captcha_ajax.php";
+	if(myclass!='no')
+		ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   		
+	if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		$(div_id_name).html(result.div_captcha);
+		
+	}
+
+
+	$('#secondpagenew2').hide();
+	$('.resultDiv').hide();
+	$('#viewDetailsDiv').hide();
+	$('#mobile').val('');
+	$('#cnr').val('');
+	$('#fpolice_st_code').val('');
+	$('#ffir_no').val('');
+	$('#ffir_year').val('');
+	$('#party').val('');
+	
+	
+
+
+}
+function submitParty()
+{ 
+	if($('#party').val()=='' || $('#party').val().trim().length<3)
+	{
+		errorAlert('Please Enter At least 3 Characters for Party Name');
+		$('#party').focus();
+		return false;
+	}
+	var fcaptcha_code=$('#fcaptcha_code_party').val();
+	 if(fcaptcha_code.length !=6)
+        {
+                errorAlert('invalid captcha code length');
+                $('#fcaptcha_code_party').focus();
+                return false;
+        }
+    var dataString="pet_name="+$('#party').val()+'&fcaptcha_code='+fcaptcha_code;
+	var dataurl="admin/mobilesearchajax.php";
+
+
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{   
+		$('#searchresult').show();
+		$('#secondpagenew').hide();
+		$('.resultDiv').show();
+
+		$('#secondpagenew2').show().html(result.historytable);
+		//alert(result.historytable);
+		$('#back').hide();
+		$('#viewDetailsDiv').hide();
+		//alert(result.div_captcha)
+		if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		{  
+			
+			//alert(result.invalid);
+			if(result.invalid!='1')
+			{
+				errorAlert(result.invalid);
+				$('#secondpagenew2').show().html('');
+				$('#party').val('');
+				$('#div_captcha_party').html(result.div_captcha);		
+				$('.captchaClass').val('');
+				
+			}
+			else
+			{
+				
+				$('#div_captcha_party').html(result.div_captcha);		
+				$('.captchaClass').val('');
+
+			}
+		
+		}
+	}
+}
+// for pagination
+function disp(pagenum)
+{
+	//alert(pagenum);
+	if (pagenum==0)
+	{
+		pagenum=2;
+	}
+	var skipcaptcha='Y';//$('#skipcaptcha').val();
+	var newoffset=parseInt(parseInt(pagenum)-1)*20;
+	var dataString="pet_name="+$('#party').val()+'&offset='+newoffset+'&pagenum='+pagenum+'&skipcaptcha='+skipcaptcha;
+	var url= "admin/mobilesearchajax.php";
+	
+	ajaxCall(url,dataString,callbackresult);
+		function callbackresult(result) 
+		{		    
+			//alert(result.historytable);
+					$('#secondpagenew2').show().html(result.historytable);
+		}
+}
+
+//pagination end
+
+$(document).ready(function() {
+//$(".chosen").chosen({background: true});
+});
+function submitpoliceForm()
+{
+	if($('#vehicle_no').val().trim()=='' && $('#challan_no').val().trim()=='')
+	{
+		errorAlert('Please Enter Challan No. or Vehicle No. ');
+		$('#challan_no').focus();
+		return false;
+	}
+
+	$('#court_wise_row').show();
+	var fcaptcha_code=$('#fcaptcha_code_police').val();
+           if(fcaptcha_code.length !=6)
+        {
+                errorAlert('invalid captcha code length');
+                $('#fcaptcha_code_police').focus();
+                return false;
+        } 
+	//var dataString="x=fetchpolicecases&challan_no="+$('#challan_no').val()+"&vehicle_no="+$('#vehicle_no').val()+'&fcaptcha_code='+fcaptcha_code;
+	var dataString="challan_no="+$('#challan_no').val()+"&vehicle_no="+$('#vehicle_no').val()+'&fcaptcha_code='+fcaptcha_code;
+	
+	var dataurl="admin/mobilesearchajax.php";
+	ajaxCall(dataurl,dataString,fun_callback);
+	function fun_callback(result)
+	{		
+		$('#searchresult').show();
+		$('#secondpagenew').hide();
+		$('.resultDiv').show();
+		$('#secondpagenew2').show().html(result.historytable);
+		$('#back').hide();
+		$('#viewDetailsDiv').hide();
+		  
+		if(result.div_captcha!='' && result.div_captcha!=undefined && result.div_captcha!=null)
+		{
+			if(result.invalid!='')
+			{
+				errorAlert(result.invalid);
+				$('#div_captcha_police').html(result.div_captcha);		
+				$('#challan_no').val('');
+				$('#vehicle_no').val('');
+				$('.captchaClass').val('');
+			}
+			else
+			{
+				$('#div_captcha_police').html(result.div_captcha);
+				$('.captchaClass').val('');
+			}
+		}
+	}
+}
+
+//==== 7/24/2019 PrintPDF -- code for HTML and Print that HTML  -- case_history_partywise.php
+/*function printElement() {	
+	var divToPrint=document.getElementById('printThis');
+	var newWin=window.open('','Print-Window');
+	newWin.document.open();
+	newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+	newWin.document.close();
+	setTimeout(function(){newWin.close();},10);
+}*/
+
+
+/*-------------------- VALIDATION AUDIT CHANGES ------------------------------*/
+
+// Enter Captcha  Added by Mohini 17.05.2025
+
+function isAlphaNumeric(evt) {
+    evt = evt || window.event;
+    var charCode = evt.which || evt.keyCode;
+    if (
+        (charCode >= 48 && charCode <= 57) || 
+        (charCode >= 65 && charCode <= 90) || 
+        (charCode >= 97 && charCode <= 122)   
+    ) {
+        return true;
+    }
+    return false; 
+}
