@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
 import { PageLoader } from "@/components/page-loader";
 import { AlertProvider } from "@/components/alert-provider";
-import { CartSidebar } from "@/components/cart-sidebar";
 import { AuthProvider } from "@/lib/auth-context";
 import { Analytics } from "@vercel/analytics/next";
+import { LayoutClient } from "@/components/layout-client";
+
+export const metadata: Metadata = {
+  title: "Megabotics - Advanced Robotics & Automation Solutions",
+  description: "Discover cutting-edge robotics, automation solutions, and innovative technology products for industries worldwide.",
+  keywords: "robotics, automation, drones, industrial robots, technology",
+  authors: [{ name: "Megabotics" }],
+  openGraph: {
+    title: "Megabotics - Advanced Robotics & Automation Solutions",
+    description: "Discover cutting-edge robotics, automation solutions, and innovative technology products.",
+    type: "website",
+  },
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +28,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Megabotics",
-  description: "The Future of Robotics, Drones & Automation",
-};
 
 export default function RootLayout({
   children,
@@ -41,9 +47,7 @@ export default function RootLayout({
         <AuthProvider>
           <AlertProvider>
             <PageLoader />
-            <Navbar />
-            <CartSidebar />
-            {children}
+            <LayoutClient>{children}</LayoutClient>
             <Analytics />
           </AlertProvider>
         </AuthProvider>

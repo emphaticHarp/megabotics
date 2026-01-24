@@ -1,11 +1,33 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { AIChatbot } from '@/components/ai-chatbot';
 import { TypingAnimation } from '@/components/typing-animation';
 import { IndustriesSection } from '@/components/industries-section';
 import { Footer } from '@/components/footer';
 
 export default function Home() {
+  const [featuredProject, setFeaturedProject] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeaturedProject = async () => {
+      try {
+        const response = await fetch('/api/featured-projects');
+        const data = await response.json();
+        if (data.success && data.data.length > 0) {
+          setFeaturedProject(data.data[0]);
+        }
+      } catch (error) {
+        console.error('Error fetching featured project:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedProject();
+  }, []);
+
   return (
     <>
       <AIChatbot />
@@ -61,110 +83,6 @@ export default function Home() {
         </main>
       </div>
 
-      {/* What We Build Section */}
-      <div className="relative py-20 bg-white overflow-hidden">
-        {/* Minimal Background */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/8 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-cyan-400/8 to-transparent rounded-full blur-3xl"></div>
-        </div>
-
-        <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {/* Clean Header */}
-            <div className="space-y-3 text-center max-w-2xl mx-auto">
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
-                What We Build
-              </h2>
-              <p className="text-base text-gray-600">
-                Innovative solutions engineered for tomorrow's challenges.
-              </p>
-            </div>
-
-            {/* Cards Grid - Clean & Minimal */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Robotics Card */}
-              <div className="group relative">
-                <div className="relative p-6 bg-white border border-gray-200 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <div className="space-y-4">
-                    {/* Icon */}
-                    <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                      <span className="text-2xl">🤖</span>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-gray-900">Robotics Systems</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">Advanced autonomous and collaborative robots engineered for industrial excellence and precision manufacturing.</p>
-                    </div>
-                    
-                    {/* CTA */}
-                    <div className="flex items-center gap-2 text-blue-600 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span>Learn more</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Drones Card */}
-              <div className="group relative">
-                <div className="relative p-6 bg-white border border-gray-200 rounded-2xl hover:border-cyan-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <div className="space-y-4">
-                    {/* Icon */}
-                    <div className="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center group-hover:bg-cyan-100 transition-colors">
-                      <span className="text-2xl">🚁</span>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-gray-900">Drone Platforms</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">High-endurance, intelligent UAVs designed for precision surveying, monitoring, and autonomous operations.</p>
-                    </div>
-                    
-                    {/* CTA */}
-                    <div className="flex items-center gap-2 text-cyan-600 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span>Learn more</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* AI & Automation Card */}
-              <div className="group relative">
-                <div className="relative p-6 bg-white border border-gray-200 rounded-2xl hover:border-purple-300 hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <div className="space-y-4">
-                    {/* Icon */}
-                    <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center group-hover:bg-purple-100 transition-colors">
-                      <span className="text-2xl">⚙️</span>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-bold text-gray-900">AI & Automation</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">Cutting-edge artificial intelligence and automation for enterprise-grade process optimization and intelligent systems.</p>
-                    </div>
-                    
-                    {/* CTA */}
-                    <div className="flex items-center gap-2 text-purple-600 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span>Learn more</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-
       {/* Industries We Serve Section */}
       <IndustriesSection />
 
@@ -186,35 +104,74 @@ export default function Home() {
             </div>
 
             {/* Project Card */}
-            <div className="relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                {/* Image Section */}
-                <div className="relative h-64 lg:h-72 bg-gradient-to-br from-blue-50 to-cyan-50 overflow-hidden flex items-center justify-center">
-                  <span className="text-6xl opacity-70">🚁</span>
-                </div>
-                
-                {/* Content Section */}
-                <div className="p-6 lg:p-8 space-y-4 flex flex-col justify-center">
-                  {/* Title */}
-                  <div className="space-y-1">
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Autonomous Drone Fleet</h3>
-                    <p className="text-xs text-blue-600 font-semibold">Precision Agriculture</p>
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : featuredProject ? (
+              <div className="relative bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  {/* Image Section */}
+                  <div className="relative h-64 lg:h-72 bg-gradient-to-br from-blue-50 to-cyan-50 overflow-hidden flex items-center justify-center">
+                    {featuredProject.image ? (
+                      <img
+                        src={featuredProject.image}
+                        alt={featuredProject.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-6xl opacity-70">🚀</span>
+                    )}
                   </div>
                   
-                  {/* Details */}
-                  <div className="space-y-2 text-xs text-gray-700">
-                    <p><span className="font-bold">Challenge:</span> Labor-intensive farming limiting yields and resource optimization.</p>
-                    <p><span className="font-bold">Solution:</span> AI-powered drone fleets with real-time crop monitoring and predictive analytics.</p>
-                    <p><span className="font-bold">Results:</span> 30% yield increase, 40% water reduction, 50% less manual labor.</p>
+                  {/* Content Section */}
+                  <div className="p-6 lg:p-8 space-y-4 flex flex-col justify-center">
+                    {/* Title */}
+                    <div className="space-y-1">
+                      <h3 className="text-xl lg:text-2xl font-bold text-gray-900">{featuredProject.title}</h3>
+                      <p className="text-xs text-blue-600 font-semibold">{featuredProject.category}</p>
+                    </div>
+                    
+                    {/* Details */}
+                    <div className="space-y-2 text-xs text-gray-700">
+                      <p>{featuredProject.description}</p>
+                    </div>
+
+                    {/* Highlights */}
+                    {featuredProject.highlights && featuredProject.highlights.length > 0 && (
+                      <div className="space-y-1">
+                        <p className="text-xs font-bold text-gray-900">Key Highlights:</p>
+                        <ul className="text-xs text-gray-700 space-y-1">
+                          {featuredProject.highlights.map((highlight: string, idx: number) => (
+                            <li key={idx}>• {highlight}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Technologies */}
+                    {featuredProject.technologies && featuredProject.technologies.length > 0 && (
+                      <div className="flex flex-wrap gap-2">
+                        {featuredProject.technologies.map((tech: string, idx: number) => (
+                          <span key={idx} className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* CTA */}
+                    <button className="w-fit px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 text-xs">
+                      View Case Study
+                    </button>
                   </div>
-                  
-                  {/* CTA */}
-                  <button className="w-fit px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 text-xs">
-                    View Case Study
-                  </button>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="text-center py-12 bg-gray-50 rounded-lg">
+                <p className="text-gray-600">No featured project available</p>
+              </div>
+            )}
           </div>
         </main>
       </div>

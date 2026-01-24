@@ -1,59 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const industriesData = [
-  {
-    id: 1,
-    image: '/agriculture-icon.png',
-    title: 'Agriculture',
-    desc: 'Precision farming & crop monitoring',
-    details: 'Smart farming solutions',
-    fullDescription: 'Transform agricultural practices with AI-powered precision farming, real-time crop monitoring, and predictive analytics for optimal yield management.',
-    benefits: ['Increased crop yields by 30%', 'Reduced water usage by 40%', 'Real-time monitoring', 'Predictive analytics'],
-  },
-  {
-    id: 2,
-    image: '/disaster-icon.png',
-    title: 'Disaster Management',
-    desc: 'Emergency response & rescue ops',
-    details: 'Rapid response systems',
-    fullDescription: 'Enable rapid emergency response with autonomous drones and AI systems for disaster assessment, rescue coordination, and real-time situational awareness.',
-    benefits: ['Faster response times', 'Improved safety', 'Real-time assessment', 'Coordinated operations'],
-  },
-  {
-    id: 3,
-    image: '/defence-icon.png',
-    title: 'Defence & Security',
-    desc: 'Advanced surveillance systems',
-    details: 'Secure operations',
-    fullDescription: 'Enhance national security with advanced surveillance systems, autonomous monitoring, and intelligent threat detection capabilities.',
-    benefits: ['24/7 monitoring', 'Threat detection', 'Secure operations', 'Real-time alerts'],
-  },
-  {
-    id: 4,
-    image: '/environment-icon.png',
-    title: 'Environmental Monitoring',
-    desc: 'Climate & ecosystem tracking',
-    details: 'Real-time monitoring',
-    fullDescription: 'Monitor environmental changes with precision sensors and AI analytics for climate tracking, ecosystem health, and sustainability initiatives.',
-    benefits: ['Climate tracking', 'Ecosystem health', 'Sustainability', 'Data-driven decisions'],
-  },
-  {
-    id: 5,
-    image: '/infrastructure-icon.png',
-    title: 'Smart Infrastructure',
-    desc: 'Urban automation solutions',
-    details: 'Connected cities',
-    fullDescription: 'Build connected smart cities with IoT integration, automated systems, and intelligent infrastructure management for sustainable urban development.',
-    benefits: ['Connected systems', 'Automated management', 'Sustainability', 'Urban efficiency'],
-  },
-];
-
 export function IndustriesSection() {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
-  const selectedIndustry = industriesData.find(ind => ind.id === selectedId);
+  const [industries, setIndustries] = useState<any[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchIndustries();
+  }, []);
+
+  const fetchIndustries = async () => {
+    try {
+      const response = await fetch('/api/industries');
+      const data = await response.json();
+      if (data.success) {
+        setIndustries(data.data);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching industries:', error);
+      setLoading(false);
+    }
+  };
+
+  const selectedIndustry = industries.find(ind => ind._id === selectedId);
+
+  if (loading) {
+    return (
+      <div className="relative py-20 bg-white overflow-hidden">
+        <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center">
+              <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading industries...</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="relative py-20 bg-white overflow-hidden">
@@ -76,42 +64,54 @@ export function IndustriesSection() {
             </div>
 
             {/* Industries Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-              {industriesData.map((industry) => (
-                <div key={industry.id} className="group relative">
-                  <div className="relative overflow-hidden rounded-2xl bg-white border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 h-80 flex flex-col">
-                    {/* Image Section */}
-                    <div className="relative h-40 bg-gradient-to-br from-gray-100 to-gray-50 overflow-hidden">
-                      <Image 
-                        src={industry.image} 
-                        alt={industry.title} 
-                        width={200} 
-                        height={200}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    
-                    {/* Content Section */}
-                    <div className="flex-1 p-4 flex flex-col justify-between">
-                      <div className="space-y-2">
-                        <h3 className="text-base font-bold text-gray-900">{industry.title}</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed">{industry.desc}</p>
+            {industries.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                {industries.map((industry) => (
+                  <div key={industry._id} className="group relative">
+                    <div className="relative overflow-hidden rounded-2xl bg-white border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md transition-all duration-300 h-80 flex flex-col">
+                      {/* Image Section */}
+                      <div className="relative h-40 bg-gradient-to-br from-gray-100 to-gray-50 overflow-hidden">
+                        {industry.image ? (
+                          <Image 
+                            src={industry.image} 
+                            alt={industry.name} 
+                            width={200} 
+                            height={200}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-5xl">
+                            {industry.icon}
+                          </div>
+                        )}
                       </div>
                       
-                      {/* Button */}
-                      <button 
-                        onClick={() => setSelectedId(industry.id)}
-                        className="mt-4 w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-all duration-300">
-                        Learn More
-                      </button>
+                      {/* Content Section */}
+                      <div className="flex-1 p-4 flex flex-col justify-between">
+                        <div className="space-y-2">
+                          <h3 className="text-base font-bold text-gray-900">{industry.name}</h3>
+                          <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{industry.description}</p>
+                        </div>
+                        
+                        {/* Button */}
+                        <button 
+                          onClick={() => setSelectedId(industry._id)}
+                          className="mt-4 w-full px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-all duration-300">
+                          Learn More
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-600">No industries available yet. Check back soon!</p>
+              </div>
+            )}
           </div>
         ) : (
-          /* Detailed View - Premium Design with Animation */
+          /* Detailed View */
           <div className="space-y-6 animate-in fade-in zoom-in duration-500">
             {/* Back Button */}
             <button
@@ -127,16 +127,20 @@ export function IndustriesSection() {
             {/* Premium Detail Card */}
             <div className="relative bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md">
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 p-8 lg:p-10">
-                {/* Image Section - Larger */}
+                {/* Image Section */}
                 <div className="lg:col-span-2 flex items-center justify-center">
                   <div className="relative w-full bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl overflow-hidden flex items-center justify-center aspect-video">
-                    <Image 
-                      src={selectedIndustry.image} 
-                      alt={selectedIndustry.title} 
-                      width={600} 
-                      height={400}
-                      className="object-cover w-full h-full"
-                    />
+                    {selectedIndustry.image ? (
+                      <Image 
+                        src={selectedIndustry.image} 
+                        alt={selectedIndustry.name} 
+                        width={600} 
+                        height={400}
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <div className="text-8xl">{selectedIndustry.icon}</div>
+                    )}
                   </div>
                 </div>
 
@@ -144,25 +148,45 @@ export function IndustriesSection() {
                 <div className="lg:col-span-3 space-y-6 flex flex-col justify-center">
                   {/* Title */}
                   <div className="space-y-2">
-                    <h2 className="text-4xl font-bold text-gray-900">{selectedIndustry.title}</h2>
-                    <p className="text-base text-blue-600 font-semibold">{selectedIndustry.details}</p>
+                    <h2 className="text-4xl font-bold text-gray-900">{selectedIndustry.name}</h2>
+                    <p className="text-base text-blue-600 font-semibold">{selectedIndustry.description}</p>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-gray-700 leading-relaxed">{selectedIndustry.fullDescription}</p>
+                  {/* Learn More Content */}
+                  <p className="text-sm text-gray-700 leading-relaxed">{selectedIndustry.learnMoreContent}</p>
+
+                  {/* Solutions */}
+                  {selectedIndustry.solutions && selectedIndustry.solutions.length > 0 && (
+                    <div className="space-y-3">
+                      <h3 className="text-base font-bold text-gray-900">Our Solutions</h3>
+                      <div className="space-y-2">
+                        {selectedIndustry.solutions.map((solution: any, idx: number) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <div>
+                              <p className="text-xs font-semibold text-gray-900">{solution.title}</p>
+                              <p className="text-xs text-gray-600">{solution.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Benefits */}
-                  <div className="space-y-3">
-                    <h3 className="text-base font-bold text-gray-900">Key Benefits</h3>
-                    <div className="grid grid-cols-2 gap-2">
-                      {selectedIndustry.benefits.map((benefit, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span className="text-xs text-gray-700">{benefit}</span>
-                        </div>
-                      ))}
+                  {selectedIndustry.benefits && selectedIndustry.benefits.length > 0 && (
+                    <div className="space-y-3">
+                      <h3 className="text-base font-bold text-gray-900">Key Benefits</h3>
+                      <div className="grid grid-cols-2 gap-2">
+                        {selectedIndustry.benefits.map((benefit: string, idx: number) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 flex-shrink-0"></div>
+                            <span className="text-xs text-gray-700">{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* CTA Buttons */}
                   <div className="flex gap-3 pt-2">

@@ -3,6 +3,32 @@ import User from '@/lib/models/User';
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
+export async function GET(request: NextRequest) {
+  try {
+    console.log('GET /api/auth/register - Fetching all users');
+    await connectDB();
+    console.log('Database connected');
+
+    // Fetch all users (excluding passwords)
+    const users = await User.find({}).select('-password').lean();
+    console.log('Users fetched:', users.length);
+
+    const response = {
+      success: true,
+      data: users,
+    };
+    
+    console.log('Sending response:', response);
+    return NextResponse.json(response, { status: 200 });
+  } catch (error: any) {
+    console.error('Error fetching users:', error);
+    return NextResponse.json(
+      { success: false, error: error.message || 'Failed to fetch users' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     console.log('Register endpoint called');
