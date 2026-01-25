@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "होम",
+    "products": "उत्पाद",
+    "projects": "प्रोजेक्ट्स",
+    "blog": "ब्लॉग",
+    "pricing": "मूल्य निर्धारण",
+    "careers": "करियर",
+    "contact": "संपर्क",
+    "help": "मदद",
+    "profile": "प्रोफाइल",
+    "logout": "लॉगआउट",
+    "login": "लॉगिन",
+    "register": "पंजीकरण"
+  },
+  "products": {
+    "title": "उत्पाद",
+    "search": "उत्पाद खोजें...",
+    "filter": "फ़िल्टर",
+    "sort": "सॉर्ट",
+    "price": "कीमत",
+    "rating": "रेटिंग",
+    "inStock": "स्टॉक में",
+    "outOfStock": "स्टॉक से बाहर",
+    "addToCart": "कार्ट में जोड़ें",
+    "addToWishlist": "विशलिस्ट में जोड़ें",
+    "quickView": "त्वरित दृश्य",
+    "compare": "तुलना करें",
+    "noResults": "कोई उत्पाद नहीं मिला"
+  },
+  "checkout": {
+    "title": "चेकआउट",
+    "personalInfo": "व्यक्तिगत जानकारी",
+    "deliveryAddress": "डिलीवरी पता",
+    "deliveryOptions": "डिलीवरी विकल्प",
+    "paymentMethod": "भुगतान विधि",
+    "orderSummary": "ऑर्डर सारांश",
+    "subtotal": "उप कुल",
+    "deliveryCharge": "डिलीवरी शुल्क",
+    "total": "कुल",
+    "placeOrder": "ऑर्डर दें",
+    "continueShipping": "शिपिंग के लिए जारी रखें"
+  },
+  "orders": {
+    "title": "मेरे ऑर्डर",
+    "orderId": "ऑर्डर आईडी",
+    "status": "स्थिति",
+    "date": "तारीख",
+    "amount": "राशि",
+    "trackOrder": "ऑर्डर ट्रैक करें",
+    "viewDetails": "विवरण देखें",
+    "noOrders": "अभी तक कोई ऑर्डर नहीं"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफल",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "close": "बंद करें",
+    "back": "वापस",
+    "next": "अगला",
+    "previous": "पिछला"
+  }
+}

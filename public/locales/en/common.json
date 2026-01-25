@@ -1,0 +1,67 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "projects": "Projects",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "careers": "Careers",
+    "contact": "Contact",
+    "help": "Help",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "products": {
+    "title": "Products",
+    "search": "Search products...",
+    "filter": "Filter",
+    "sort": "Sort",
+    "price": "Price",
+    "rating": "Rating",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "addToCart": "Add to Cart",
+    "addToWishlist": "Add to Wishlist",
+    "quickView": "Quick View",
+    "compare": "Compare",
+    "noResults": "No products found"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "personalInfo": "Personal Information",
+    "deliveryAddress": "Delivery Address",
+    "deliveryOptions": "Delivery Options",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "deliveryCharge": "Delivery Charge",
+    "total": "Total",
+    "placeOrder": "Place Order",
+    "continueShipping": "Continue to Shipping"
+  },
+  "orders": {
+    "title": "My Orders",
+    "orderId": "Order ID",
+    "status": "Status",
+    "date": "Date",
+    "amount": "Amount",
+    "trackOrder": "Track Order",
+    "viewDetails": "View Details",
+    "noOrders": "No orders yet"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}
