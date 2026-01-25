@@ -4,11 +4,15 @@ import Product from '@/lib/models/Product';
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('GET /api/products - Starting');
     await connectDB();
+    console.log('GET /api/products - DB Connected');
 
     const products = await Product.find({})
       .sort({ order: 1 })
       .lean();
+
+    console.log('GET /api/products - Found', products.length, 'products');
 
     // Convert _id to string for proper serialization
     const productsWithStringId = products.map(prod => ({
@@ -26,7 +30,7 @@ export async function GET(request: NextRequest) {
   } catch (error: any) {
     console.error('Error fetching products:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to fetch products' },
+      { success: false, error: error.message || 'Failed to fetch products' },
       { status: 500 }
     );
   }

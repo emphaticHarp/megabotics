@@ -564,9 +564,11 @@ export default function Products() {
           setProducts(data.data);
         } else {
           console.warn('No products data in response');
+          setProducts([]);
         }
       } catch (error) {
         console.error('Error fetching products:', error);
+        setProducts([]);
       } finally {
         setIsLoading(false);
       }
