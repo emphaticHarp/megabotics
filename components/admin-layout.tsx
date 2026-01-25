@@ -43,6 +43,7 @@ export function AdminLayout({ children, currentPage }: AdminLayoutProps) {
     { label: 'Users', icon: Users, href: '/admin/users' },
     { label: 'Products', icon: Package, href: '/admin/products' },
     { label: 'Orders', icon: ShoppingCart, href: '/admin/orders' },
+    { label: 'Blog', icon: FileText, href: '/admin/blog' },
     { label: 'Analytics', icon: BarChart, href: '/admin/analytics' },
     { label: 'Reports', icon: FileText, href: '/admin/reports' },
     { label: 'Settings', icon: Settings, href: '/admin/settings' },

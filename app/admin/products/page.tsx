@@ -7,6 +7,7 @@ import { AdminLayout } from '@/components/admin-layout';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { toast } from 'sonner';
 import { ProductAnalyticsChart } from '@/components/product-analytics-chart';
+import { AdminCouponsSection } from '@/components/admin-coupons-section';
 
 interface Product {
   _id: string;
@@ -436,6 +437,7 @@ function ProductComparisonModal({ products, isOpen, onClose }: { products: Produ
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [activeTab, setActiveTab] = useState<'products' | 'coupons'>('products');
   const [searchTerm, setSearchTerm] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -1278,7 +1280,23 @@ export default function AdminProductsPage() {
 
   return (
     <AdminLayout currentPage="Products">
-      <div className="p-6">
+      {activeTab === 'products' ? (
+        <div className="p-6">
+          {/* Tab Navigation */}
+          <div className="flex gap-4 border-b border-gray-200 mb-6">
+            <button
+              onClick={() => setActiveTab('products')}
+              className="px-4 py-2 font-semibold text-blue-600 border-b-2 border-blue-600"
+            >
+              Products
+            </button>
+            <button
+              onClick={() => setActiveTab('coupons')}
+              className="px-4 py-2 font-semibold text-gray-600 hover:text-gray-900"
+            >
+              Coupons & Discounts
+            </button>
+          </div>
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -2506,7 +2524,6 @@ export default function AdminProductsPage() {
             </div>
           </div>
         )}
-      </div>
 
       {/* Quick Edit Modal */}
       <QuickEditModal
@@ -2537,6 +2554,26 @@ export default function AdminProductsPage() {
         onClose={() => setShowRatingEditor(false)}
         onSave={handleRatingSave}
       />
+        </div>
+      ) : (
+        <div className="p-6">
+          <div className="flex gap-4 border-b border-gray-200 mb-6">
+            <button
+              onClick={() => setActiveTab('products')}
+              className="px-4 py-2 font-semibold text-gray-600 hover:text-gray-900"
+            >
+              Products
+            </button>
+            <button
+              onClick={() => setActiveTab('coupons')}
+              className="px-4 py-2 font-semibold text-blue-600 border-b-2 border-blue-600"
+            >
+              Coupons & Discounts
+            </button>
+          </div>
+          <AdminCouponsSection />
+        </div>
+      )}
 
       <style jsx>{`
         @keyframes marquee {

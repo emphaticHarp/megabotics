@@ -37,9 +37,12 @@ const deliveryCharges: { [key: string]: number } = {
 export default function CheckoutPage() {
   const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [deliveryType, setDeliveryType] = useState('Standard');
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+  const [couponLoading, setCouponLoading] = useState(false);
+  const [couponError, setCouponError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     customerName: '',
     email: '',
@@ -74,7 +77,7 @@ export default function CheckoutPage() {
   };
 
   const calculateTotal = () => {
-    return calculateSubtotal() + formData.deliveryCharge;
+    return calculateSubtotal() + formData.deliveryCharge - (appliedCoupon?.discount || 0);
   };
 
   const handleDeliveryChange = (type: string) => {
@@ -91,6 +94,93 @@ export default function CheckoutPage() {
       ...formData,
       [name]: value,
     });
+  };
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      setCouponError('Please enter a coupon code');
+      return;
+    }
+
+    setCouponLoading(true);
+    setCouponError(null);
+    try {
+      // Always fetch fresh data with cache busting
+      const url = `/api/coupons?code=${encodeURIComponent(couponCode.toUpperCase())}&t=${Date.now()}`;
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      });
+      
+      const data = await response.json();
+
+      if (!response.ok) {
+        const errorMsg = data.error || 'Invalid coupon code';
+        setCouponError(errorMsg);
+        toast.error(errorMsg);
+        setAppliedCoupon(null);
+        setCouponLoading(false);
+        return;
+      }
+
+      const coupon = data.data;
+      console.log('Fresh coupon data:', coupon);
+
+      // Check minimum order amount
+      const subtotal = calculateSubtotal();
+      if (coupon.minOrderAmount && subtotal < coupon.minOrderAmount) {
+        const errorMsg = `Minimum order amount is ₹${coupon.minOrderAmount}. Current: ₹${subtotal}`;
+        setCouponError(errorMsg);
+        toast.error(errorMsg);
+        setAppliedCoupon(null);
+        setCouponLoading(false);
+        return;
+      }
+
+      // Calculate discount from fresh data
+      let discount = 0;
+      if (coupon.discountType === 'percentage') {
+        discount = (subtotal * coupon.discountValue) / 100;
+        if (coupon.maxDiscount) {
+          discount = Math.min(discount, coupon.maxDiscount);
+        }
+      } else {
+        discount = coupon.discountValue;
+      }
+
+      console.log('Calculated discount:', discount, 'from value:', coupon.discountValue);
+
+      setAppliedCoupon({
+        code: coupon.code,
+        discount,
+        type: coupon.discountType,
+        value: coupon.discountValue,
+      });
+      setCouponError(null);
+
+      toast.success(`✓ Coupon applied! You saved ₹${discount.toLocaleString()}`);
+    } catch (error: any) {
+      console.error('Coupon error:', error);
+      const errorMsg = 'Failed to apply coupon. Please try again.';
+      setCouponError(errorMsg);
+      toast.error(errorMsg);
+      setAppliedCoupon(null);
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode('');
+    setCouponError(null);
+    toast.success('Coupon removed');
   };
 
   const validateForm = () => {
@@ -153,6 +243,8 @@ export default function CheckoutPage() {
         paymentStatus: 'Pending',
         totalAmount: calculateTotal(),
         orderStatus: 'Pending',
+        couponCode: appliedCoupon?.code || null,
+        couponDiscount: appliedCoupon?.discount || 0,
         notes: '',
       };
 
@@ -166,6 +258,19 @@ export default function CheckoutPage() {
 
       if (!response.ok) {
         throw new Error(data.error || 'Failed to create order');
+      }
+
+      // Increment coupon usage if coupon was applied
+      if (appliedCoupon?.code) {
+        try {
+          await fetch(`/api/coupons/use`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: appliedCoupon.code }),
+          });
+        } catch (error) {
+          console.error('Error updating coupon usage:', error);
+        }
       }
 
       toast.success('Order placed successfully!');
@@ -416,6 +521,59 @@ export default function CheckoutPage() {
                     <span className="text-gray-600">Delivery Charge</span>
                     <span className="font-semibold text-gray-900">₹{formData.deliveryCharge}</span>
                   </div>
+
+                  {/* Coupon Section */}
+                  {!appliedCoupon ? (
+                    <div className="space-y-2 mt-4">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={couponCode}
+                          onChange={(e) => {
+                            setCouponCode(e.target.value.toUpperCase());
+                            setCouponError(null);
+                          }}
+                          placeholder="Enter coupon code"
+                          className="flex-1 px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-600"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleApplyCoupon}
+                          disabled={couponLoading}
+                          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors disabled:opacity-50"
+                        >
+                          {couponLoading ? 'Applying...' : 'Apply'}
+                        </button>
+                      </div>
+                      {couponError && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                          <p className="text-sm text-red-700 font-semibold">✗ {couponError}</p>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-green-700">{appliedCoupon.code}</p>
+                        <p className="text-xs text-green-600">Discount: ₹{appliedCoupon.discount.toLocaleString()}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleRemoveCoupon}
+                        className="text-green-600 hover:text-green-700 font-semibold text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  )}
+
+                  {appliedCoupon && (
+                    <div className="flex justify-between text-green-600">
+                      <span>Discount</span>
+                      <span>-₹{appliedCoupon.discount.toLocaleString()}</span>
+                    </div>
+                  )}
+
                   <div className="flex justify-between text-lg font-bold border-t pt-3">
                     <span>Total</span>
                     <span className="text-blue-600">₹{calculateTotal().toLocaleString()}</span>
