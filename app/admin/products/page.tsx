@@ -1596,153 +1596,159 @@ export default function AdminProductsPage() {
                       <label className="text-xs font-medium text-gray-700">Under Maintenance</label>
                     </div>
                   </div>
+                </div>
 
-                  {/* RIGHT COLUMN */}
-                  <div className="space-y-3">
-                    {/* Warranty */}
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Warranty</label>
-                      <select
-                        value={formData.warranty}
-                        onChange={(e) => setFormData({ ...formData, warranty: e.target.value })}
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      >
-                        {warranties.map(w => (
-                          <option key={w} value={w}>{w}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Delivery */}
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Delivery</label>
-                      <select
-                        value={formData.delivery}
-                        onChange={(e) => setFormData({ ...formData, delivery: e.target.value })}
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      >
-                        {deliveries.map(d => (
-                          <option key={d} value={d}>{d}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Rating */}
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Rating</label>
-                      <input
-                        type="number"
-                        min="0"
-                        max="5"
-                        step="0.1"
-                        value={isNaN(formData.rating) ? '' : formData.rating}
-                        onChange={(e) => setFormData({ ...formData, rating: e.target.value === '' ? 0 : parseFloat(e.target.value) })}
-                        placeholder="0"
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      />
-                    </div>
-
-                    {/* Reviews */}
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Reviews Count</label>
-                      <input
-                        type="number"
-                        value={isNaN(formData.reviews) ? '' : formData.reviews}
-                        onChange={(e) => setFormData({ ...formData, reviews: e.target.value === '' ? 0 : parseInt(e.target.value) })}
-                        placeholder="0"
-                        className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      />
-                    </div>
-
-                    {/* Images */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="text-xs font-medium text-gray-700">Images (URLs)</label>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({
-                            ...formData,
-                            images: [...formData.images, ''],
-                          })}
-                          className="p-0.5 hover:bg-blue-100 rounded text-blue-600"
+                {/* Two Column Layout */}
+                <div className="grid grid-cols-2 gap-3 border-t border-gray-200 pt-4">
+                    {/* LEFT COLUMN */}
+                    <div className="space-y-3">
+                      {/* Warranty */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Warranty</label>
+                        <select
+                          value={formData.warranty}
+                          onChange={(e) => setFormData({ ...formData, warranty: e.target.value })}
+                          className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
                         >
-                          <Plus className="w-3 h-3" />
-                        </button>
+                          {warranties.map(w => (
+                            <option key={w} value={w}>{w}</option>
+                          ))}
+                        </select>
                       </div>
-                      <div className="space-y-1 max-h-20 overflow-y-auto border border-gray-200 rounded p-2 bg-gray-50">
-                        {formData.images.map((img, idx) => (
-                          <div key={idx} className="flex gap-1">
-                            <input
-                              type="url"
-                              value={img}
-                              onChange={(e) => {
-                                const newImages = [...formData.images];
-                                newImages[idx] = e.target.value;
-                                setFormData({ ...formData, images: newImages });
-                              }}
-                              placeholder="Image URL"
-                              className="flex-1 px-1.5 py-0.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setFormData({
-                                ...formData,
-                                images: formData.images.filter((_, i) => i !== idx),
-                              })}
-                              className="p-0.5 hover:bg-red-100 rounded text-red-600"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ))}
+
+                      {/* Delivery */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Delivery</label>
+                        <select
+                          value={formData.delivery}
+                          onChange={(e) => setFormData({ ...formData, delivery: e.target.value })}
+                          className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        >
+                          {deliveries.map(d => (
+                            <option key={d} value={d}>{d}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Rating */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Rating</label>
+                        <input
+                          type="number"
+                          min="0"
+                          max="5"
+                          step="0.1"
+                          value={isNaN(formData.rating) ? '' : formData.rating}
+                          onChange={(e) => setFormData({ ...formData, rating: e.target.value === '' ? 0 : parseFloat(e.target.value) })}
+                          placeholder="0"
+                          className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
+                      </div>
+
+                      {/* Reviews */}
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Reviews Count</label>
+                        <input
+                          type="number"
+                          value={isNaN(formData.reviews) ? '' : formData.reviews}
+                          onChange={(e) => setFormData({ ...formData, reviews: e.target.value === '' ? 0 : parseInt(e.target.value) })}
+                          placeholder="0"
+                          className="w-full px-2 py-1.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        />
                       </div>
                     </div>
 
-                    {/* Specs */}
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="text-xs font-medium text-gray-700">Specifications</label>
-                        <button
-                          type="button"
-                          onClick={() => setFormData({
-                            ...formData,
-                            specs: [...formData.specs, ''],
-                          })}
-                          className="p-0.5 hover:bg-blue-100 rounded text-blue-600"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
+                    {/* RIGHT COLUMN */}
+                    <div className="space-y-3">
+                      {/* Images */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <label className="text-xs font-medium text-gray-700">Images (URLs)</label>
+                          <button
+                            type="button"
+                            onClick={() => setFormData({
+                              ...formData,
+                              images: [...formData.images, ''],
+                            })}
+                            className="p-0.5 hover:bg-blue-100 rounded text-blue-600"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+                        <div className="space-y-1 max-h-20 overflow-y-auto border border-gray-200 rounded p-2 bg-gray-50">
+                          {formData.images.map((img, idx) => (
+                            <div key={idx} className="flex gap-1">
+                              <input
+                                type="url"
+                                value={img}
+                                onChange={(e) => {
+                                  const newImages = [...formData.images];
+                                  newImages[idx] = e.target.value;
+                                  setFormData({ ...formData, images: newImages });
+                                }}
+                                placeholder="Image URL"
+                                className="flex-1 px-1.5 py-0.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setFormData({
+                                  ...formData,
+                                  images: formData.images.filter((_, i) => i !== idx),
+                                })}
+                                className="p-0.5 hover:bg-red-100 rounded text-red-600"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="space-y-1 max-h-20 overflow-y-auto border border-gray-200 rounded p-2 bg-gray-50">
-                        {formData.specs.map((spec, idx) => (
-                          <div key={idx} className="flex gap-1">
-                            <input
-                              type="text"
-                              value={spec}
-                              onChange={(e) => {
-                                const newSpecs = [...formData.specs];
-                                newSpecs[idx] = e.target.value;
-                                setFormData({ ...formData, specs: newSpecs });
-                              }}
-                              placeholder="Specification"
-                              className="flex-1 px-1.5 py-0.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setFormData({
-                                ...formData,
-                                specs: formData.specs.filter((_, i) => i !== idx),
-                              })}
-                              className="p-0.5 hover:bg-red-100 rounded text-red-600"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ))}
+
+                      {/* Specs */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1">
+                          <label className="text-xs font-medium text-gray-700">Specifications</label>
+                          <button
+                            type="button"
+                            onClick={() => setFormData({
+                              ...formData,
+                              specs: [...formData.specs, ''],
+                            })}
+                            className="p-0.5 hover:bg-blue-100 rounded text-blue-600"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+                        <div className="space-y-1 max-h-20 overflow-y-auto border border-gray-200 rounded p-2 bg-gray-50">
+                          {formData.specs.map((spec, idx) => (
+                            <div key={idx} className="flex gap-1">
+                              <input
+                                type="text"
+                                value={spec}
+                                onChange={(e) => {
+                                  const newSpecs = [...formData.specs];
+                                  newSpecs[idx] = e.target.value;
+                                  setFormData({ ...formData, specs: newSpecs });
+                                }}
+                                placeholder="Specification"
+                                className="flex-1 px-1.5 py-0.5 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-600"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => setFormData({
+                                  ...formData,
+                                  specs: formData.specs.filter((_, i) => i !== idx),
+                                })}
+                                className="p-0.5 hover:bg-red-100 rounded text-red-600"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
                 {/* Loader */}
                 {uploading && (
